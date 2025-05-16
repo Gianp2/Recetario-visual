@@ -1,0 +1,547 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* Body Styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #FF6B6B, #FF9F43, #FFD54F);
+  background-attachment: fixed;
+  color: #333;
+  transition: 0.5s ease all;
+}
+
+body.dark {
+  background-color: #343D5B;
+  color: white;
+}
+
+.info-section {
+  background-color: #fafafa;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 500px;
+  margin: 20px auto;
+  border: 1px solid #ddd;
+}
+
+.info-section h2 {
+  font-size: 22px;
+  color: #555;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  color: #444;
+  padding: 8px 0;
+}
+
+.info-item i {
+  font-size: 18px;
+  color: #007bff;
+}
+
+.info-item span {
+  font-weight: 400;
+}
+
+
+/* Header */
+header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #5cb85c;
+  color: #fff;
+  background-image: url(../assets/img/fondo-cocina.jpg);
+  background-size: cover;
+}
+
+header img {
+  width: 15%;
+  align-self: baseline;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+header i {
+  font-size: 4em;
+  color: white;
+  border: 3px solid black;
+  border-radius: 50%;
+}
+
+header h1 {
+  color: black;
+  font-size: 3.5em;
+  font-family: "Poppins", sans-serif;
+  background-color: hsla(0, 0%, 100%, 0.8);
+  padding: 20px 30px;
+  text-align: center;
+}
+
+header .cerrarSesion {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #F5ECE0;
+  color: purple;
+  border: 1px solid purple;
+  border-radius: 5px;
+  padding: 5px 20px;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+header .cerrarSesion:hover {
+  color: rgb(243, 126, 243);
+  border-color: rgb(243, 126, 243);
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+
+/* Main Section */
+main {
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+main h2 {
+  font-size: 2rem;
+  text-align: center;
+  color: #5cb85c;
+  margin-bottom: 1rem;
+}
+
+main p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+main span {
+  font-weight: bold;
+  color: #ff6f61;
+}
+
+/* Form Section */
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.form-section h2 {
+  font-size: 1.8rem;
+  color: #444;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+form {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+textarea {
+  resize: none;
+}
+
+button[type="submit"] {
+  background-color: #5cb85c;
+  color: white;
+  font-size: 1rem;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #4cae4c;
+}
+
+.recipe-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.edit-recipe-btn, .delete-recipe-btn, .print-recipe-btn {
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.edit-recipe-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.edit-recipe-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.delete-recipe-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-recipe-btn:hover {
+  background-color: #da190b;
+  transform: scale(1.05);
+}
+
+.print-recipe-btn {
+  background-color: #FF9F43;
+  color: white;
+  font-weight: bold;
+  padding: 6px 12px;
+}
+
+.print-recipe-btn:hover {
+  background-color: #ff851b;
+  transform: scale(1.05);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Recipes Section */
+.recipes-section h2 {
+  font-size: 1.8rem;
+  color: #5cb85c;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+#recipeList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+#clearRecipes {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s;
+}
+
+#clearRecipes:hover {
+  background-color: #ff867f;
+}
+
+#comments-section {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#comments-section h2 {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  text-align: center;
+}
+
+#comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+#comment-form label {
+  font-weight: bold;
+}
+
+#comment {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-family: 'Poppins', sans-serif;
+}
+
+#comment-form button {
+  padding: 10px;
+  background-color: #ff7b00;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#comment-form button:hover {
+  background-color: #e66a00;
+}
+
+#comments-list {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+  background-color: #5cb85c;
+  color: white;
+}
+
+thead th {
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+tbody td {
+  text-align: center;
+  padding: 0.8rem;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody i:hover {
+  transform: scale(1.2);
+  transition: 0.3s;
+}
+
+.borrarTodo {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.borrarTodo:hover {
+  background-color: #ff867f;
+}
+
+/* Comparador */
+.comparador {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.comparador h2 {
+  font-size: 1.8rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.comparador label {
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  color: #333;
+}
+
+.compare {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.compare:hover {
+  background-color: #4cae4c;
+}
+
+/* Filter Section */
+.filterConteiner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.filterConteiner > div {
+  flex: 1;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.filterConteiner h3 {
+  font-size: 1.5rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* API Recipe Finder */
+.recetaApi {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.ideasRecetasTitulo {
+  font-size: 1.8rem;
+  color: #5cb85c;
+  margin-bottom: 1.5rem;
+}
+
+form#buscaApi {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.buscadorRecetas {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 70%;
+}
+
+#search-btn {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#search-btn:hover {
+  background-color: #4cae4c;
+}
+
+footer {
+  margin-top: 2rem;
+  padding: 1.5rem 0;
+  text-align: center;
+  background: linear-gradient(135deg, #FF6B6B, #FF9F43, #FFD54F);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+#comments-section {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+main {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+footer {
+  margin-top: 0 !important;
+}

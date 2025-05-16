@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Recetas de Cocina</title> 
+</head>
+<header>
+
+<section class="info-section">
+  <h2>Información de Contacto</h2>
+  <div class="info-container">
+    <div class="info-item">
+      <span class="icon">🏫</span>
+      <p><strong>Escuela Especial 2031 - María Molina de Albonico</strong></p>
+    </div>
+    <div class="info-item">
+      <span class="icon">📍</span>
+      <p><strong>Dirección:</strong> Necochea 94, 2500 Cañada de Gómez, IRIONDO</p>
+    </div>
+    <div class="info-item">
+      <span class="icon">☎️</span>
+      <p><strong>Teléfono:</strong> 03471 423615</p>
+    </div>
+    <div class="info-item">
+      <span class="icon">🕒</span>
+      <div>
+        <p><strong>Horarios:</strong></p>
+        <ul>
+        <li><strong>Lunes a Viernes:</strong> 08:00 - 17:00</li>
+          <li><strong>Sábado:</strong> Cerrado</li>
+          <li><strong>Domingo:</strong> Cerrado</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .info-section {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1.5rem 2rem;
+    /* Fondo con degradado cálido */
+    background: linear-gradient(135deg, #FF6B6B, #FF9F43, #FFD54F);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #3a1f00; /* texto oscuro para contraste */
+  }
+  
+  .info-section h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #4b2e00; /* un tono oscuro pero cálido */
+    margin-bottom: 1.5rem;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+  
+  .info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: rgba(255 255 255 / 0.85); /* fondo blanco traslúcido */
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0 0 0 / 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .info-item:hover {
+    box-shadow: 0 4px 15px rgba(255 165 0 / 0.3);
+  }
+  
+  .icon {
+    font-size: 2.4rem;
+    line-height: 1;
+    color: #d2691e; /* color cálido para íconos */
+    flex-shrink: 0;
+  }
+  
+  .info-item p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .info-item ul {
+    margin: 0.25rem 0 0 0;
+    padding-left: 1.1rem;
+    color: #7f4e00;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  
+  .info-item ul li {
+    margin-bottom: 0.25rem;
+  }
+</style>
+
+
+
+<button id="scrollToContentBtn" style="
+  padding: 20px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  width: auto;
+  min-width: 120px;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+">
+  CREA TU RECETA! 👇
+</button>
+
+<script>
+  document.getElementById('scrollToContentBtn').addEventListener('mouseenter', () => {
+    const btn = document.getElementById('scrollToContentBtn');
+    btn.style.background = 'linear-gradient(135deg, #2575fc 0%, #6a11cb 100%)';
+    btn.style.boxShadow = '0 6px 16px rgba(106, 17, 203, 0.7)';
+    btn.style.transform = 'scale(1.05)';
+  });
+  document.getElementById('scrollToContentBtn').addEventListener('mouseleave', () => {
+    const btn = document.getElementById('scrollToContentBtn');
+    btn.style.background = 'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)';
+    btn.style.boxShadow = '0 4px 12px rgba(37, 117, 252, 0.5)';
+    btn.style.transform = 'scale(1)';
+  });
+</script>
+</header>
+
+<body>
+    <main id="mainContent">
+        <h2>ARMÁ TU RECETA 📝</h2>
+        <p>Este espacio es para que vos, <span>Chef</span> 👨🏻‍🍳, puedas cargar tus recetas.</p>
+
+        <section class="form-section">
+            <h2>CREAR RECETA</h2>
+            <form id="recipe-form">
+                <label for="recipe-name">NOMBRE DE LA RECETA:</label>
+                <input type="text" id="recipe-name" required>
+
+                <label for="ingredient-search">BUSCAR INGREDIENTES:</label>
+                <input type="text" id="ingredient-search" placeholder="Escribe para buscar...">
+
+                <label for="ingredient-select">SELECCIONAR INGREDIENTES:</label>
+                <select id="ingredient-select" multiple></select>
+
+                <button type="button" id="add-ingredients-btn">AÑADIR INGREDIENTES</button>
+                <div id="selected-ingredients"></div>
+
+                <label for="steps">PASOS:</label>
+                <textarea id="steps" required></textarea>
+
+                <button type="submit">GUARDAR RECETA</button>
+            </form>
+        </section>
+
+        <div class="inventario-container">
+  <h2>Inventario de Cocina</h2>
+  
+  <form id="formulario-inventario">
+    <input type="text" id="nombreProducto" placeholder="Nombre del producto" required />
+    <input type="number" id="cantidadProducto" placeholder="Cantidad (kg/unid)" min="0.1" step="0.1" required />
+    <button type="submit">Agregar/Actualizar</button>
+  </form>
+
+  <ul id="listaInventario"></ul>
+</div>
+
+
+        <!-- Sección de recetas guardadas -->
+        <section id="recipes-section">
+            <h2>RECETAS GUARDADAS</h2>
+            <div id="recipes-list"></div>
+        </section>
+
+        <section class="recipes-section">
+            <div id="recipeList"></div>
+            <button id="clearRecipes">BORRAR TODAS LAS RECETAS</button>
+        </section>
+
+        <!-- Sección de comentarios -->
+        <section id="comments-section">
+            <h2>COMENTARIOS</h2>
+            <form id="comment-form">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" required>
+                <label for="email">Correo:</label>
+                <input type="text" id="email" required>
+                <label for="comment">Deja tu comentario:</label>
+                <textarea id="comment" required></textarea>
+                <button type="submit">Enviar Comentario</button>
+            </form>
+            <div id="comments-list"></div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        emailjs.init("hqLFCpK3qVkTF0Fdk");
+
+        document.getElementById('recipe-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('recipe-name').value;
+            const ingredients = Array.from(document.querySelectorAll('#selected-ingredients .ingredient')).map(i => i.textContent);
+            const steps = document.getElementById('steps').value;
+
+            const recipeDiv = document.createElement('div');
+            recipeDiv.classList.add('recipe');
+            recipeDiv.innerHTML = `
+                <h3>${name}</h3>
+                <p><strong>Ingredientes:</strong> ${ingredients.join(', ')}</p>
+                <p><strong>Pasos:</strong> ${steps}</p>
+                <button onclick="printRecipe('${name}', '${ingredients.join(', ')}', '${steps}')">Imprimir Receta</button>
+            `;
+            document.getElementById('recipes-list').appendChild(recipeDiv);
+
+            this.reset();
+        });
+
+        function printRecipe(name, ingredients, steps) {
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                <head><title>${name}</title></head>
+                <body>
+                    <h1>${name}</h1>
+                    <h2>Ingredientes</h2>
+                    <p>${ingredients}</p>
+                    <h2>Pasos</h2>
+                    <p>${steps}</p>
+                    <script>window.print(); window.close();
+                    <\/script>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+        }
+    </script>
+    <script src="js/scripts.js"></script>
+
+    <footer>
+        <p>Desarrollado para Escuela Especial N° 2031</p>
+        <p>© 2025 Todos los derechos reservados.</p>
+    </footer>
+    <script>
+    document.getElementById('scrollToContentBtn').addEventListener('click', () => {
+  document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
