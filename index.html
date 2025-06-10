@@ -10,23 +10,24 @@
     <title>Recetas de Cocina</title>
 </head>
 <header>
-    <section class="info-section">
+    <section class="info-section" role="region" aria-label="Información de Contacto">
+        <h1 class="header-title">Recetario de Cocina Visual - Escuela Especial N°2031</h1>
         <h2>Información de Contacto</h2>
         <div class="info-container">
             <div class="info-item">
-                <span class="icon">🏫</span>
+                <span class="icon" aria-hidden="true">🏫</span>
                 <p><strong>Escuela Especial 2031 - María Molina de Albonico</strong></p>
             </div>
             <div class="info-item">
-                <span class="icon">📍</span>
+                <span class="icon" aria-hidden="true">📍</span>
                 <p><strong>Dirección:</strong> Necochea 94, 2500 Cañada de Gómez, IRIONDO</p>
             </div>
             <div class="info-item">
-                <span class="icon">☎️</span>
-                <p><strong>Teléfono:</strong> 03471 423615</p>
+                <span class="icon" aria-hidden="true">☎️</span>
+                <p><strong>Teléfono:</strong> <a href="tel:+543471423615">03471 423615</a></p>
             </div>
             <div class="info-item">
-                <span class="icon">🕒</span>
+                <span class="icon" aria-hidden="true">🕒</span>
                 <div>
                     <p><strong>Horarios:</strong></p>
                     <ul>
@@ -37,7 +38,132 @@
                 </div>
             </div>
         </div>
+        <button id="backToTopBtn" class="back-to-top" aria-label="Volver al inicio">
+            ↑ Volver arriba
+        </button>
     </section>
+
+    <style>
+        .info-section {
+            max-width: 700px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: linear-gradient(135deg, #4CAF50, #66BB6A, #81C784);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1B5E20;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-section h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .icon {
+            font-size: 2.5rem;
+            color: #2E7D32;
+            flex-shrink: 0;
+        }
+
+        .info-item p {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1B5E20;
+        }
+
+        .info-item a {
+            color: #1B5E20;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .info-item a:hover {
+            text-decoration: underline;
+            color: #388E3C;
+        }
+
+        .info-item ul {
+            margin: 0.5rem 0 0 0;
+            padding-left: 1.2rem;
+            color: #33691E;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .info-item ul li {
+            margin-bottom: 0.3rem;
+        }
+
+        .back-to-top {
+            margin-top: 1.5rem;
+            padding: 10px 20px;
+            background: #388E3C;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .back-to-top:hover {
+            background: #2E7D32;
+            transform: scale(1.05);
+        }
+    </style>
+
+    <script>
+        document.getElementById('backToTopBtn').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</header>
 
     <style>
         .info-section {
