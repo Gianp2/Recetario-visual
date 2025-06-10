@@ -544,10 +544,12 @@
             printWindow.document.close();
         }
 
-        // Editar, eliminar e imprimir recetas
+        // Editar, eliminar e imprimir recetas (con delegación de eventos)
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('edit-recipe-btn')) {
-                editRecipe(e.target.getAttribute('data-index'));
+                const index = e.target.getAttribute('data-index');
+                editRecipe(index);
+                console.log('Editando receta en índice:', index); // Para depuración
             } else if (e.target.classList.contains('delete-recipe-btn')) {
                 deleteRecipe(e.target.getAttribute('data-index'));
             } else if (e.target.classList.contains('print-recipe-btn')) {
