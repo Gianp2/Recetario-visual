@@ -7,144 +7,140 @@
     <link rel="icon" type="image/jpeg" href="img/favicon.ico">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Recetas de Cocina</title> 
+    <title>Recetas de Cocina</title>
 </head>
 <header>
+    <section class="info-section">
+        <h2>Información de Contacto</h2>
+        <div class="info-container">
+            <div class="info-item">
+                <span class="icon">🏫</span>
+                <p><strong>Escuela Especial 2031 - María Molina de Albonico</strong></p>
+            </div>
+            <div class="info-item">
+                <span class="icon">📍</span>
+                <p><strong>Dirección:</strong> Necochea 94, 2500 Cañada de Gómez, IRIONDO</p>
+            </div>
+            <div class="info-item">
+                <span class="icon">☎️</span>
+                <p><strong>Teléfono:</strong> 03471 423615</p>
+            </div>
+            <div class="info-item">
+                <span class="icon">🕒</span>
+                <div>
+                    <p><strong>Horarios:</strong></p>
+                    <ul>
+                        <li><strong>Lunes a Viernes:</strong> 08:00 - 17:00</li>
+                        <li><strong>Sábado:</strong> Cerrado</li>
+                        <li><strong>Domingo:</strong> Cerrado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section class="info-section">
-  <h2>Información de Contacto</h2>
-  <div class="info-container">
-    <div class="info-item">
-      <span class="icon">🏫</span>
-      <p><strong>Escuela Especial 2031 - María Molina de Albonico</strong></p>
-    </div>
-    <div class="info-item">
-      <span class="icon">📍</span>
-      <p><strong>Dirección:</strong> Necochea 94, 2500 Cañada de Gómez, IRIONDO</p>
-    </div>
-    <div class="info-item">
-      <span class="icon">☎️</span>
-      <p><strong>Teléfono:</strong> 03471 423615</p>
-    </div>
-    <div class="info-item">
-      <span class="icon">🕒</span>
-      <div>
-        <p><strong>Horarios:</strong></p>
-        <ul>
-        <li><strong>Lunes a Viernes:</strong> 08:00 - 17:00</li>
-          <li><strong>Sábado:</strong> Cerrado</li>
-          <li><strong>Domingo:</strong> Cerrado</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+    <style>
+        .info-section {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, #FF6B6B, #FF9F43, #FFD54F);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #3a1f00;
+        }
+        
+        .info-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #4b2e00;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        
+        .info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: rgba(255 255 255 / 0.85);
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0 0 0 / 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .info-item:hover {
+            box-shadow: 0 4px 15px rgba(255 165 0 / 0.3);
+        }
+        
+        .icon {
+            font-size: 2.4rem;
+            line-height: 1;
+            color: #d2691e;
+            flex-shrink: 0;
+        }
+        
+        .info-item p {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .info-item ul {
+            margin: 0.25rem 0 0 0;
+            padding-left: 1.1rem;
+            color: #7f4e00;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        .info-item ul li {
+            margin-bottom: 0.25rem;
+        }
+    </style>
 
-<style>
-  .info-section {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1.5rem 2rem;
-    /* Fondo con degradado cálido */
-    background: linear-gradient(135deg, #FF6B6B, #FF9F43, #FFD54F);
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #3a1f00; /* texto oscuro para contraste */
-  }
-  
-  .info-section h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #4b2e00; /* un tono oscuro pero cálido */
-    margin-bottom: 1.5rem;
-    text-align: center;
-    letter-spacing: 1px;
-  }
-  
-  .info-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-  
-  .info-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    background: rgba(255 255 255 / 0.85); /* fondo blanco traslúcido */
-    padding: 1rem 1.25rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0 0 0 / 0.1);
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .info-item:hover {
-    box-shadow: 0 4px 15px rgba(255 165 0 / 0.3);
-  }
-  
-  .icon {
-    font-size: 2.4rem;
-    line-height: 1;
-    color: #d2691e; /* color cálido para íconos */
-    flex-shrink: 0;
-  }
-  
-  .info-item p {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 600;
-  }
-  
-  .info-item ul {
-    margin: 0.25rem 0 0 0;
-    padding-left: 1.1rem;
-    color: #7f4e00;
-    font-weight: 500;
-    font-size: 0.95rem;
-  }
-  
-  .info-item ul li {
-    margin-bottom: 0.25rem;
-  }
-</style>
+    <button id="scrollToContentBtn" style="
+        padding: 20px 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 9999px;
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        color: white;
+        font-weight: 600;
+        font-size: 1rem;
+        box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
+        transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+        width: auto;
+        min-width: 120px;
+        display: inline-block;
+        text-align: center;
+        white-space: nowrap;
+    ">
+        CREA TU RECETA! 👇
+    </button>
 
-
-
-<button id="scrollToContentBtn" style="
-  padding: 20px 20px;
-  cursor: pointer;
-  border: none;
-  border-radius: 9999px;
-  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-  color: white;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 4px 12px rgba(37, 117, 252, 0.5);
-  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-  width: auto;
-  min-width: 120px;
-  display: inline-block;
-  text-align: center;
-  white-space: nowrap;
-">
-  CREA TU RECETA! 👇
-</button>
-
-<script>
-  document.getElementById('scrollToContentBtn').addEventListener('mouseenter', () => {
-    const btn = document.getElementById('scrollToContentBtn');
-    btn.style.background = 'linear-gradient(135deg, #2575fc 0%, #6a11cb 100%)';
-    btn.style.boxShadow = '0 6px 16px rgba(106, 17, 203, 0.7)';
-    btn.style.transform = 'scale(1.05)';
-  });
-  document.getElementById('scrollToContentBtn').addEventListener('mouseleave', () => {
-    const btn = document.getElementById('scrollToContentBtn');
-    btn.style.background = 'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)';
-    btn.style.boxShadow = '0 4px 12px rgba(37, 117, 252, 0.5)';
-    btn.style.transform = 'scale(1)';
-  });
-</script>
+    <script>
+        document.getElementById('scrollToContentBtn').addEventListener('mouseenter', () => {
+            const btn = document.getElementById('scrollToContentBtn');
+            btn.style.background = 'linear-gradient(135deg, #2575fc 0%, #6a11cb 100%)';
+            btn.style.boxShadow = '0 6px 16px rgba(106, 17, 203, 0.7)';
+            btn.style.transform = 'scale(1.05)';
+        });
+        document.getElementById('scrollToContentBtn').addEventListener('mouseleave', () => {
+            const btn = document.getElementById('scrollToContentBtn');
+            btn.style.background = 'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)';
+            btn.style.boxShadow = '0 4px 12px rgba(37, 117, 252, 0.5)';
+            btn.style.transform = 'scale(1)';
+        });
+    </script>
 </header>
 
 <body>
@@ -173,7 +169,6 @@
                 <button type="submit">GUARDAR RECETA</button>
             </form>
         </section>
-
 
         <!-- Sección de recetas guardadas -->
         <section id="recipes-section">
@@ -206,58 +201,415 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
-        emailjs.init("hqLFCpK3qVkTF0Fdk");
+        // Traducción de ingredientes
+        const ingredientTranslations = {
+            "Aceite": "Oil",
+            "Acelga": "Chard",
+            "Aguacate": "Avocado",
+            "Albahaca": "Basil",
+            "Alcachofa": "Artichoke",
+            "Almeja": "Clam",
+            "Almendras": "Almonds",
+            "Anacardos": "Cashews",
+            "Apio": "Celery",
+            "Arroz": "Rice",
+            "Atún": "Tuna",
+            "Azafrán": "Saffron",
+            "Azúcar": "Sugar",
+            "Bacon": "Bacon",
+            "Batata": "Sweet Potato",
+            "Berenjena": "Eggplant",
+            "Bicarbonato": "Baking Soda",
+            "Brócoli": "Broccoli",
+            "Cacahuetes": "Peanuts",
+            "Calabacín": "Zucchini",
+            "Calamares": "Squid",
+            "Camarones": "Shrimp",
+            "Canela": "Cinnamon",
+            "Cardamomo": "Cardamom",
+            "Carne de Cerdo": "Pork",
+            "Carne de Cordero": "Lamb",
+            "Carne de Ternera": "Veal",
+            "Cebada": "Barley",
+            "Cebolla": "Onion",
+            "Cereza": "Cherry",
+            "Cerdo": "Pork",
+            "Champiñones": "Mushrooms",
+            "Chayote": "Chayote",
+            "Chocolate": "Chocolate",
+            "Cilantro": "Cilantro",
+            "Ciruela": "Plum",
+            "Clavo": "Clove",
+            "Coles de Bruselas": "Brussels Sprouts",
+            "Coliflor": "Cauliflower",
+            "Coco": "Coconut",
+            "Codorniz": "Quail",
+            "Comino": "Cumin",
+            "Conejo": "Rabbit",
+            "Cordero": "Lamb",
+            "Corn Flour": "Harina de Maíz",
+            "Crema": "Cream",
+            "Durazno": "Peach",
+            "Espárragos": "Asparagus",
+            "Espinaca": "Spinach",
+            "Fresa": "Strawberry",
+            "Frijoles": "Beans",
+            "Garbanzos": "Chickpeas",
+            "Granada": "Pomegranate",
+            "Guisantes": "Peas",
+            "Harina": "Flour",
+            "Harina de Avena": "Oat Flour",
+            "Harina de Maíz": "Corn Flour",
+            "Harina Integral": "Whole Wheat Flour",
+            "Habas": "Broad Beans",
+            "Hinojo": "Fennel",
+            "Hinojo (semillas)": "Fennel Seeds",
+            "Huevo": "Egg",
+            "Jamón": "Ham",
+            "Jengibre": "Ginger",
+            "Kale": "Kale",
+            "Kiwi": "Kiwi",
+            "Langosta": "Lobster",
+            "Lechuga": "Lettuce",
+            "Leche": "Milk",
+            "Levadura": "Yeast",
+            "Limón": "Lemon",
+            "Lentejas": "Lentils",
+            "Maíz": "Corn",
+            "Mango": "Mango",
+            "Manteca": "Butter",
+            "Manzana": "Apple",
+            "Maracuyá": "Passion Fruit",
+            "Mascarpone": "Mascarpone",
+            "Mejillón": "Mussel",
+            "Melón": "Melon",
+            "Miel": "Honey",
+            "Mijo": "Millet",
+            "Mostaza": "Mustard",
+            "Naranja": "Orange",
+            "Nata": "Heavy Cream",
+            "Nuez Moscada": "Nutmeg",
+            "Nueces": "Walnuts",
+            "Okra": "Okra",
+            "Orégano": "Oregano",
+            "Ostra": "Oyster",
+            "Pan": "Bread",
+            "Papa": "Potato",
+            "Papaya": "Papaya",
+            "Paprika": "Paprika",
+            "Pasta": "Pasta",
+            "Pavo": "Turkey",
+            "Pepino": "Cucumber",
+            "Pera": "Pear",
+            "Perejil": "Parsley",
+            "Pescado": "Fish",
+            "Pimiento": "Pepper",
+            "Pimienta": "Pepper",
+            "Pimienta de Cayena": "Cayenne Pepper",
+            "Piña": "Pineapple",
+            "Pistachos": "Pistachios",
+            "Plátano": "Banana",
+            "Pollo": "Chicken",
+            "Polvo de Hornear": "Baking Powder",
+            "Quinoa": "Quinoa",
+            "Rábano": "Radish",
+            "Requesón": "Cottage Cheese",
+            "Ricotta": "Ricotta",
+            "Romero": "Rosemary",
+            "Rúcula": "Arugula",
+            "Sal": "Salt",
+            "Salmón": "Salmon",
+            "Salchicha": "Sausage",
+            "Sandía": "Watermelon",
+            "Salsa de Soja": "Soy Sauce",
+            "Semillas de Calabaza": "Pumpkin Seeds",
+            "Semillas de Chía": "Chia Seeds",
+            "Semillas de Girasol": "Sunflower Seeds",
+            "Semillas de Sésamo": "Sesame Seeds",
+            "Sorgo": "Sorghum",
+            "Suero de leche": "Buttermilk",
+            "Tapioca": "Tapioca",
+            "Tocino": "Bacon",
+            "Tomate": "Tomato",
+            "Tomillo": "Thyme",
+            "Tortilla": "Tortilla",
+            "Trigo": "Wheat",
+            "Trucha": "Trout",
+            "Uva": "Grape",
+            "Vainilla": "Vanilla",
+            "Vinagre": "Vinegar",
+            "Yogur": "Yogurt",
+            "Zanahoria": "Carrot"
+        };
 
-        document.getElementById('recipe-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+        let ingredients = Object.keys(ingredientTranslations);
+        let selectedIngredients = [];
+        let recipes = [];
 
-            const name = document.getElementById('recipe-name').value;
-            const ingredients = Array.from(document.querySelectorAll('#selected-ingredients .ingredient')).map(i => i.textContent);
-            const steps = document.getElementById('steps').value;
+        // Obtener imagen del ingrediente
+        function getIngredientImage(ingredient) {
+            let translated = ingredientTranslations[ingredient] || ingredient;
+            return `https://www.themealdb.com/images/ingredients/${translated}.png`;
+        }
 
-            const recipeDiv = document.createElement('div');
-            recipeDiv.classList.add('recipe');
-            recipeDiv.innerHTML = `
-                <h3>${name}</h3>
-                <p><strong>Ingredientes:</strong> ${ingredients.join(', ')}</p>
-                <p><strong>Pasos:</strong> ${steps}</p>
-                <button onclick="printRecipe('${name}', '${ingredients.join(', ')}', '${steps}')">Imprimir Receta</button>
-            `;
-            document.getElementById('recipes-list').appendChild(recipeDiv);
+        // Cargar lista de ingredientes al iniciar
+        function loadIngredients() {
+            updateIngredientSelect(ingredients);
+        }
 
-            this.reset();
+        // Actualizar el select con los ingredientes filtrados
+        function updateIngredientSelect(ingredientsToShow) {
+            const ingredientSelect = document.getElementById('ingredient-select');
+            ingredientSelect.innerHTML = '';
+            ingredientsToShow.forEach(ingredient => {
+                const option = document.createElement('option');
+                option.value = ingredient;
+                option.textContent = ingredient;
+                ingredientSelect.appendChild(option);
+            });
+        }
+
+        // Filtrar ingredientes en tiempo real
+        document.getElementById('ingredient-search').addEventListener('input', () => {
+            const searchValue = document.getElementById('ingredient-search').value.toLowerCase();
+            const filteredIngredients = ingredients.filter(ingredient =>
+                ingredient.toLowerCase().includes(searchValue)
+            );
+            updateIngredientSelect(filteredIngredients);
         });
 
-        function printRecipe(name, ingredients, steps) {
+        // Función para agregar ingredientes con cantidad usando prompt
+        document.getElementById('add-ingredients-btn').addEventListener('click', () => {
+            const selectedOptions = Array.from(document.getElementById('ingredient-select').selectedOptions);
+            selectedOptions.forEach(option => {
+                const ingredient = option.value;
+                const quantity = prompt(`¿Cuántos ${ingredient} necesitas?`);
+                if (quantity) {
+                    selectedIngredients.push({ ingredient, quantity });
+                }
+            });
+            updateSelectedIngredients();
+        });
+
+        // Función para eliminar un ingrediente seleccionado
+        function removeIngredient(ingredientName) {
+            selectedIngredients = selectedIngredients.filter(({ ingredient }) => ingredient !== ingredientName);
+            updateSelectedIngredients();
+        }
+
+        // Función para actualizar la lista de ingredientes seleccionados con botón de eliminación
+        function updateSelectedIngredients() {
+            const selectedIngredientsDiv = document.getElementById('selected-ingredients');
+            selectedIngredientsDiv.innerHTML = selectedIngredients
+                .map(({ ingredient, quantity }) => `
+                    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                        <img src="${getIngredientImage(ingredient)}" 
+                             alt="${ingredient}" 
+                             style="width:30px; height:30px; margin-right:10px;"
+                             onerror="this.src='https://via.placeholder.com/30?text=${ingredient}';">
+                        <span>${ingredient} (${quantity})</span>
+                        <button class="remove-ingredient" data-ingredient="${ingredient}" 
+                                style="margin-left:10px; background-color:#d9534f; color:white; border:none; 
+                                       padding:2px 5px; font-size:12px; width: 20px; height: 20px; cursor:pointer; 
+                                       display:flex; align-items:center; justify-content:center; border-radius:50%;">
+                            ❌
+                        </button>
+                    </div>
+                `)
+                .join('');
+
+            // Agregar event listener a los botones de eliminación
+            document.querySelectorAll('.remove-ingredient').forEach(button => {
+                button.addEventListener('click', () => {
+                    removeIngredient(button.getAttribute('data-ingredient'));
+                });
+            });
+        }
+
+        // Cargar recetas guardadas desde localStorage
+        function loadRecipesFromStorage() {
+            const storedRecipes = localStorage.getItem('recipes');
+            if (storedRecipes) {
+                recipes = JSON.parse(storedRecipes);
+                const recipesList = document.getElementById('recipes-list');
+                recipesList.innerHTML = '';
+                recipes.forEach((recipe, index) => displayRecipe(recipe, index));
+            }
+        }
+
+        // Mostrar recetas guardadas con botón de imprimir
+        function displayRecipe(recipe, index) {
+            const recipeCard = document.createElement('div');
+            recipeCard.classList.add('recipe-card');
+            recipeCard.setAttribute('data-index', index);
+            recipeCard.innerHTML = `
+                <h3>${recipe.name}</h3>
+                <p><strong>Ingredientes:</strong></p>
+                <div>
+                    ${recipe.ingredients.map(({ ingredient, quantity }, idx) => `
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <img src="${recipe.images[idx]}" alt="${ingredient}" style="width:50px; height:50px; margin-right:10px;"
+                                 onerror="this.src='https://via.placeholder.com/50?text=${ingredient}';">
+                            <span>${ingredient} (${quantity})</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <p><strong>Pasos:</strong> ${recipe.steps}</p>
+                <button class="edit-recipe-btn" data-index="${index}">Editar</button>
+                <button class="delete-recipe-btn" data-index="${index}">Eliminar</button>
+                <button class="print-recipe-btn" data-index="${index}">Imprimir</button>
+            `;
+            document.getElementById('recipes-list').appendChild(recipeCard);
+        }
+
+        // Guardar y manejar el formulario
+        document.getElementById('recipe-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const recipeName = document.getElementById('recipe-name').value;
+            const steps = document.getElementById('steps').value;
+            const images = selectedIngredients.map(ingredient => getIngredientImage(ingredient.ingredient));
+
+            const recipe = { name: recipeName, ingredients: selectedIngredients, steps, images };
+            const editingIndex = document.getElementById('recipe-form').dataset.editingIndex;
+
+            if (editingIndex !== undefined && editingIndex !== '') {
+                recipes[editingIndex] = recipe;
+                delete document.getElementById('recipe-form').dataset.editingIndex;
+            } else {
+                recipes.push(recipe);
+            }
+
+            localStorage.setItem('recipes', JSON.stringify(recipes));
+            document.getElementById('recipes-list').innerHTML = '';
+            recipes.forEach((recipe, index) => displayRecipe(recipe, index));
+
+            document.getElementById('recipe-form').reset();
+            selectedIngredients = [];
+            updateSelectedIngredients();
+        });
+
+        // Editar receta
+        function editRecipe(index) {
+            const recipe = recipes[index];
+            document.getElementById('recipe-name').value = recipe.name;
+            document.getElementById('steps').value = recipe.steps;
+            selectedIngredients = [...recipe.ingredients];
+            updateSelectedIngredients();
+            document.getElementById('recipe-form').dataset.editingIndex = index;
+        }
+
+        // Eliminar receta
+        function deleteRecipe(index) {
+            recipes.splice(index, 1);
+            localStorage.setItem('recipes', JSON.stringify(recipes));
+            document.getElementById('recipes-list').innerHTML = '';
+            recipes.forEach((recipe, idx) => displayRecipe(recipe, idx));
+        }
+
+        // Función imprimir receta
+        function printRecipe(index) {
+            const recipe = recipes[index];
             const printWindow = window.open('', '_blank');
             printWindow.document.write(`
                 <html>
-                <head><title>${name}</title></head>
+                <head>
+                    <title>${recipe.name}</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; }
+                        h1 { font-size: 24px; }
+                        h2 { font-size: 18px; margin-top: 20px; }
+                        .ingredient { display: flex; align-items: center; margin-bottom: 10px; }
+                        img { width: 50px; height: 50px; margin-right: 10px; }
+                    </style>
+                </head>
                 <body>
-                    <h1>${name}</h1>
+                    <h1>${recipe.name}</h1>
                     <h2>Ingredientes</h2>
-                    <p>${ingredients}</p>
+                    <div>
+                        ${recipe.ingredients.map(({ ingredient, quantity }, idx) => `
+                            <div class="ingredient">
+                                <img src="${recipe.images[idx]}" alt="${ingredient}" 
+                                     onerror="this.src='https://via.placeholder.com/50?text=${ingredient}';">
+                                <span>${ingredient} (${quantity})</span>
+                            </div>
+                        `).join('')}
+                    </div>
                     <h2>Pasos</h2>
-                    <p>${steps}</p>
-                    <script>window.print(); window.close();
-                    <\/script>
+                    <p>${recipe.steps}</p>
+                    <script>window.print(); window.close();<\/script>
                 </body>
                 </html>
             `);
             printWindow.document.close();
         }
+
+        // Editar, eliminar e imprimir recetas
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('edit-recipe-btn')) {
+                editRecipe(e.target.getAttribute('data-index'));
+            } else if (e.target.classList.contains('delete-recipe-btn')) {
+                deleteRecipe(e.target.getAttribute('data-index'));
+            } else if (e.target.classList.contains('print-recipe-btn')) {
+                printRecipe(e.target.getAttribute('data-index'));
+            }
+        });
+
+        // Borrar todas las recetas
+        document.getElementById('clearRecipes').addEventListener('click', () => {
+            document.getElementById('recipes-list').innerHTML = '';
+            recipes = [];
+            localStorage.removeItem('recipes');
+        });
+
+        // Inicialización
+        document.addEventListener("DOMContentLoaded", function () {
+            loadIngredients();
+            loadRecipesFromStorage();
+
+            // Corrección de EmailJS
+            emailjs.init("hqLFCpK3qVkTF0Fdk");
+
+            const commentForm = document.getElementById("comment-form");
+            if (commentForm) {
+                commentForm.addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    const name = document.getElementById("name").value.trim();
+                    const email = document.getElementById("email").value.trim();
+                    const comment = document.getElementById("comment").value.trim();
+
+                    if (!name || !email || !comment) {
+                        alert("Por favor, completa todos los campos.");
+                        return;
+                    }
+
+                    const formData = { name, email, comment };
+
+                    emailjs.send("service_3a04o94", "template_3lb7au9", formData)
+                        .then(function (response) {
+                            console.log("Comentario enviado con éxito:", response);
+                            alert("Comentario enviado con éxito.");
+                            commentForm.reset();
+                        })
+                        .catch(function (error) {
+                            console.error("Error al enviar el comentario:", error);
+                            alert("Ocurrió un error al enviar el comentario.");
+                        });
+                });
+            }
+        });
+
+        // Scroll al contenido
+        document.getElementById('scrollToContentBtn').addEventListener('click', () => {
+            document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth' });
+        });
     </script>
-    <script src="js/scripts.js"></script>
-<br>
+    <br>
     <br>
     <footer>
         <p>Desarrollado para Escuela Especial N° 2031</p>
         <p>© 2025 Todos los derechos reservados.</p>
     </footer>
-    <script>
-    document.getElementById('scrollToContentBtn').addEventListener('click', () => {
-  document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth' });
-});
-</script>
 </body>
 </html>
