@@ -346,10 +346,14 @@
         let selectedIngredients = [];
         let recipes = [];
 
-        // Obtener imagen del ingrediente
+        // Obtener imagen del ingrediente con imagen manual para "acelga"
         function getIngredientImage(ingredient) {
             let translated = ingredientTranslations[ingredient] || ingredient;
-            return `https://www.themealdb.com/images/ingredients/${translated}.png`;
+            if (ingredient.toLowerCase() === "acelga") {
+                return "img/acelga.png"; // Ruta a tu imagen local de acelga
+            }
+            const imageUrl = `https://www.themealdb.com/images/ingredients/${translated}.png`;
+            return imageUrl; // La API sigue siendo el default para otros ingredientes
         }
 
         // Cargar lista de ingredientes al iniciar
