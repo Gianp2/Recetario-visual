@@ -170,6 +170,18 @@
             </form>
         </section>
 
+        <!-- Nueva sección para agregar ingredientes -->
+        <section class="add-ingredient-section">
+            <h2>AGREGAR NUEVO INGREDIENTE</h2>
+            <form id="add-ingredient-form">
+                <label for="new-ingredient-name">Nombre del ingrediente:</label>
+                <input type="text" id="new-ingredient-name" required>
+                <label for="new-ingredient-image">URL de la imagen (o ruta local, ej. img/nuevo.jpg):</label>
+                <input type="text" id="new-ingredient-image" placeholder="Ej: img/acelga.jpg o https://ejemplo.com/imagen.jpg" required>
+                <button type="submit">AGREGAR INGREDIENTE</button>
+            </form>
+        </section>
+
         <!-- Sección de recetas guardadas -->
         <section id="recipes-section">
             <h2>RECETAS GUARDADAS</h2>
@@ -317,24 +329,32 @@
             "Vinagre": "Vinegar",
             "Yogur": "Yogurt",
             "Zanahoria": "Carrot"
-        };
+       };
 
         let ingredients = Object.keys(ingredientTranslations);
         let selectedIngredients = [];
         let recipes = [];
 
-        // Obtener imagen del ingrediente con imagen manual para "acelga"
+        // Cargar ingredientes personalizados desde localStorage
+        let customIngredients = JSON.parse(localStorage.getItem('customIngredients')) || {};
+
+        // Obtener imagen del ingrediente con soporte para imágenes personalizadas
         function getIngredientImage(ingredient) {
+            if (customIngredients[ingredient.toLowerCase()]) {
+                return customIngredients[ingredient.toLowerCase()].image;
+            }
             let translated = ingredientTranslations[ingredient] || ingredient;
             if (ingredient.toLowerCase() === "acelga") {
-                return "img/acelga.png"; // Ruta a tu imagen local de acelga
+                return "img/acelga.jpg"; // Ruta a tu imagen local de acelga
             }
             const imageUrl = `https://www.themealdb.com/images/ingredients/${translated}.png`;
-            return imageUrl; // La API sigue siendo el default para otros ingredientes
+            return imageUrl;
         }
 
         // Cargar lista de ingredientes al iniciar
         function loadIngredients() {
+            // Agregar ingredientes personalizados a la lista
+            ingredients = [...new Set([...ingredients, ...Object.keys(customIngredients)])];
             updateIngredientSelect(ingredients);
         }
 
@@ -543,6 +563,31 @@
             document.getElementById('recipes-list').innerHTML = '';
             recipes = [];
             localStorage.removeItem('recipes');
+        });
+
+        // Agregar nuevo ingrediente
+        document.getElementById('add-ingredient-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const newIngredientName = document.getElementById('new-ingredient-name').value.trim();
+            const newIngredientImage = document.getElementById('new-ingredient-image').value.trim();
+
+            if (newIngredientName && newIngredientImage) {
+                // Guardar en customIngredients
+                customIngredients[newIngredientName.toLowerCase()] = { image: newIngredientImage };
+                localStorage.setItem('customIngredients', JSON.stringify(customIngredients));
+
+                // Actualizar la lista de ingredientes
+                if (!ingredients.includes(newIngredientName)) {
+                    ingredients.push(newIngredientName);
+                    updateIngredientSelect(ingredients);
+                }
+
+                document.getElementById('add-ingredient-form').reset();
+                alert('Ingrediente agregado con éxito!');
+            } else {
+                alert('Por favor, completa todos los campos.');
+            }
         });
 
         // Inicialización
