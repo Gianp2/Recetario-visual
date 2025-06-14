@@ -8,13 +8,48 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Recetas de Cocina</title>
+</head>
+<header>
+
+    <section class="info-section">
+        <h2>Información de Contacto</h2>
+        <div class="info-container">
+            <div class="info-item">
+                <span class="icon">🏫</span>
+                <p><strong>Escuela Especial 2031 - María Molina de Albonico</strong></p>
+            </div>
+            <div class="info-item">
+                <span class="icon">📍</span>
+                <p><strong>Dirección:</strong> Necochea 94, 2500 Cañada de Gómez, IRIONDO</p>
+            </div>
+            <div class="info-item">
+                <span class="icon">☎️</span>
+                <p><strong>Teléfono:</strong> 03471 423615</p>
+            </div>
+            <div class="info-item">
+                <span class="icon">🕒</span>
+                <div>
+                    <p><strong>Horarios:</strong></p>
+                    <ul>
+                        <li><strong>Lunes a Viernes:</strong> 08:00 - 17:00</li>
+                        <li><strong>Sábado:</strong> Cerrado</li>
+                        <li><strong>Domingo:</strong> Cerrado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <button id="scrollToContentBtn" class="create-recipe-btn">
+        CREA TU RECETA! 👇
+    </button>
+    
     <style>
         .info-section {
             max-width: 700px;
             margin: 2rem auto;
             padding: 2rem;
-            background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 30%, #388E3C 60%, #43A047 100%);            
-            border-radius: 15px;
+            background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 30%, #388E3C 60%, #43A047 100%);            border-radius: 15px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #1B5E20;
@@ -124,123 +159,13 @@
         .create-recipe-btn:active {
             transform: scale(0.95);
         }
-
-        .inventory-section {
-            max-width: 700px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .inventory-section h2 {
-            font-size: 1.8rem;
-            color: #1B5E20;
-            margin-bottom: 1rem;
-        }
-
-        .inventory-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
-
-        .inventory-table th, .inventory-table td {
-            padding: 0.8rem;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .inventory-table th {
-            background-color: #2E7D32;
-            color: white;
-        }
-
-        .low-stock {
-            color: red;
-            font-weight: bold;
-        }
-
-        .inventory-form label {
-            display: block;
-            margin: 0.5rem 0 0.2rem;
-            font-weight: 500;
-        }
-
-        .inventory-form input, .inventory-form textarea {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .inventory-form button {
-            padding: 0.5rem 1rem;
-            background-color: #43A047;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .inventory-form button:hover {
-            background-color: #388E3C;
-        }
-
-        .inventory-table button {
-            padding: 0.3rem 0.6rem;
-            margin: 0 0.2rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .inventory-table .edit-btn {
-            background-color: #2575fc;
-            color: white;
-        }
-
-        .inventory-table .delete-btn {
-            background-color: #d9534f;
-            color: white;
-        }
     </style>
-</head>
-<header>
-    <section class="info-section">
-        <h2>Información de Contacto</h2>
-        <div class="info-container">
-            <div class="info-item">
-                <span class="icon">🏫</span>
-                <p><strong>Escuela Especial 2031 - María Molina de Albonico</strong></p>
-            </div>
-            <div class="info-item">
-                <span class="icon">📍</span>
-                <p><strong>Dirección:</strong> Necochea 94, 2500 Cañada de Gómez, IRIONDO</p>
-            </div>
-            <div class="info-item">
-                <span class="icon">☎️</span>
-                <p><strong>Teléfono:</strong> 03471 423615</p>
-            </div>
-            <div class="info-item">
-                <span class="icon">🕒</span>
-                <div>
-                    <p><strong>Horarios:</strong></p>
-                    <ul>
-                        <li><strong>Lunes a Viernes:</strong> 08:00 - 17:00</li>
-                        <li><strong>Sábado:</strong> Cerrado</li>
-                        <li><strong>Domingo:</strong> Cerrado</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <button id="scrollToContentBtn" class="create-recipe-btn">
-        CREA TU RECETA! 👇
-    </button>
+
+    <script>
+        document.getElementById('scrollToContentBtn').addEventListener('click', () => {
+            document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
 </header>
 
 <body>
@@ -248,32 +173,8 @@
         <h2>ARMÁ TU RECETA 📝</h2>
         <p>Este espacio es para que vos, <span>Chef</span> 👨🏻‍🍳, puedas cargar tus recetas.</p>
 
-        <section class="inventory-section">
-            <h2>GESTIÓN DE INVENTARIO</h2>
-            <form id="inventory-form">
-                <label for="inventory-item">Nombre del ítem:</label>
-                <input type="text" id="inventory-item" required>
-                <label for="inventory-quantity">Cantidad:</label>
-                <input type="text" id="inventory-quantity" placeholder="Ej: 3 kg" required>
-                <label for="inventory-message">Mensaje/Nota:</label>
-                <textarea id="inventory-message" placeholder="Ej: Falta reponer arroz"></textarea>
-                <button type="submit">AGREGAR/EDITAR ÍTEM</button>
-            </form>
-            <table class="inventory-table">
-                <thead>
-                    <tr>
-                        <th>Ítem</th>
-                        <th>Cantidad</th>
-                        <th>Mensaje</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="inventory-list"></tbody>
-            </table>
-        </section>
-
         <section class="form-section">
-            <h2>CREAR RECETA 🍔</h2>
+            <h2>CREAR RECETA</h2>
             <form id="recipe-form">
                 <label for="recipe-name">NOMBRE DE LA RECETA:</label>
                 <input type="text" id="recipe-name" required>
@@ -290,10 +191,11 @@
                 <label for="steps">PASOS:</label>
                 <textarea id="steps" required></textarea>
 
-                <button type="submit">GUARDAR RECETA ✅</button>
+                <button type="submit">GUARDAR RECETA</button>
             </form>
         </section>
 
+        <!-- Nueva sección para agregar ingredientes -->
         <section class="add-ingredient-section">
             <h2>AGREGAR NUEVO INGREDIENTE</h2>
             <form id="add-ingredient-form">
@@ -305,6 +207,7 @@
             </form>
         </section>
 
+        <!-- Sección de recetas guardadas -->
         <section id="recipes-section">
             <h2>RECETAS GUARDADAS</h2>
             <div id="recipes-list"></div>
@@ -315,6 +218,7 @@
             <button id="clearRecipes">BORRAR TODAS LAS RECETAS</button>
         </section>
 
+        <!-- Sección de comentarios -->
         <section id="comments-section">
             <h2>COMENTARIOS</h2>
             <form id="comment-form">
@@ -330,6 +234,7 @@
         </section>
     </main>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
@@ -454,27 +359,26 @@
         let ingredients = Object.keys(ingredientTranslations);
         let selectedIngredients = [];
         let recipes = [];
-        let inventory = [];
 
-        // Cargar datos desde localStorage
+        // Cargar ingredientes personalizados desde localStorage
         let customIngredients = JSON.parse(localStorage.getItem('customIngredients')) || {};
-        let storedInventory = JSON.parse(localStorage.getItem('inventory')) || [];
 
-        // Obtener imagen del ingrediente
+        // Obtener imagen del ingrediente con soporte para imágenes personalizadas
         function getIngredientImage(ingredient) {
             if (customIngredients[ingredient.toLowerCase()]) {
                 return customIngredients[ingredient.toLowerCase()].image;
             }
             let translated = ingredientTranslations[ingredient] || ingredient;
             if (ingredient.toLowerCase() === "acelga") {
-                return "img/acelga.jpg";
+                return "img/acelga.jpg"; // Ruta a tu imagen local de acelga
             }
             const imageUrl = `https://www.themealdb.com/images/ingredients/${translated}.png`;
             return imageUrl;
         }
 
-        // Cargar lista de ingredientes
+        // Cargar lista de ingredientes al iniciar
         function loadIngredients() {
+            // Agregar ingredientes personalizados a la lista
             ingredients = [...new Set([...ingredients, ...Object.keys(customIngredients)])];
             updateIngredientSelect(ingredients);
         }
@@ -487,11 +391,6 @@
                 const option = document.createElement('option');
                 option.value = ingredient;
                 option.textContent = ingredient;
-                const stock = inventory.find(item => item.name.toLowerCase() === ingredient.toLowerCase());
-                if (stock && isLowStock(stock.quantity)) {
-                    option.style.color = 'red';
-                    option.textContent += ' - ¡Falta reponer!';
-                }
                 ingredientSelect.appendChild(option);
             });
         }
@@ -505,136 +404,36 @@
             updateIngredientSelect(filteredIngredients);
         });
 
-        // Verificar si el stock es bajo
-        function isLowStock(quantity) {
-            const num = parseFloat(quantity);
-            if (isNaN(num)) return false;
-            return num < 0.5; // Ejemplo: menos de 500g o 0.5 unidades
-        }
-
-        // Cargar inventario
-        function loadInventory() {
-            inventory = storedInventory;
-            updateInventoryTable();
-        }
-
-        // Actualizar la tabla de inventario
-        function updateInventoryTable() {
-            const inventoryList = document.getElementById('inventory-list');
-            inventoryList.innerHTML = '';
-            inventory.forEach((item, index) => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${item.name}</td>
-                    <td class="${isLowStock(item.quantity) ? 'low-stock' : ''}">
-                        ${item.quantity}${isLowStock(item.quantity) ? ' - ¡Falta reponer!' : ''}
-                    </td>
-                    <td>${item.message || '-'}</td>
-                    <td>
-                        <button class="edit-btn" data-index="${index}">Editar</button>
-                        <button class="delete-btn" data-index="${index}">Eliminar</button>
-                    </td>
-                `;
-                inventoryList.appendChild(row);
-            });
-        }
-
-        // Manejar el formulario de inventario
-        document.getElementById('inventory-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const itemName = document.getElementById('inventory-item').value.trim();
-            const quantity = document.getElementById('inventory-quantity').value.trim();
-            const message = document.getElementById('inventory-message').value.trim();
-            const editingIndex = document.getElementById('inventory-form').dataset.editingIndex;
-
-            if (editingIndex !== undefined && editingIndex !== '') {
-                inventory[editingIndex] = { name: itemName, quantity, message };
-                delete document.getElementById('inventory-form').dataset.editingIndex;
-            } else {
-                inventory.push({ name: itemName, quantity, message });
-            }
-
-            localStorage.setItem('inventory', JSON.stringify(inventory));
-            updateInventoryTable();
-            updateIngredientSelect(ingredients);
-            document.getElementById('inventory-form').reset();
-        });
-
-        // Editar ítem del inventario
-        function editInventoryItem(index) {
-            const item = inventory[index];
-            document.getElementById('inventory-item').value = item.name;
-            document.getElementById('inventory-quantity').value = item.quantity;
-            document.getElementById('inventory-message').value = item.message || '';
-            document.getElementById('inventory-form').dataset.editingIndex = index;
-        }
-
-        // Eliminar ítem del inventario
-        function deleteInventoryItem(index) {
-            inventory.splice(index, 1);
-            localStorage.setItem('inventory', JSON.stringify(inventory));
-            updateInventoryTable();
-            updateIngredientSelect(ingredients);
-        }
-
-        // Delegación de eventos para botones de inventario
-        document.getElementById('inventory-list').addEventListener('click', (e) => {
-            if (e.target.classList.contains('edit-btn')) {
-                editInventoryItem(e.target.getAttribute('data-index'));
-            } else if (e.target.classList.contains('delete-btn')) {
-                deleteInventoryItem(e.target.getAttribute('data-index'));
-            }
-        });
-
-        // Añadir ingredientes con validación de inventario
+        // Función para agregar ingredientes con cantidad usando prompt
         document.getElementById('add-ingredients-btn').addEventListener('click', () => {
             const selectedOptions = Array.from(document.getElementById('ingredient-select').selectedOptions);
             selectedOptions.forEach(option => {
                 const ingredient = option.value;
-                const stock = inventory.find(item => item.name.toLowerCase() === ingredient.toLowerCase());
-                if (!stock || isLowStock(stock.quantity)) {
-                    alert(`Advertencia: ${ingredient} tiene stock bajo o no está disponible.`);
-                    return;
-                }
                 const quantity = prompt(`¿Cuántos ${ingredient} necesitas?`);
                 if (quantity) {
-                    const message = stock ? stock.message : '';
-                    selectedIngredients.push({ ingredient, quantity, message });
-                    if (stock) {
-                        const numStock = parseFloat(stock.quantity);
-                        const numUsed = parseFloat(quantity);
-                        if (!isNaN(numStock) && !isNaN(numUsed)) {
-                            stock.quantity = (numStock - numUsed).toFixed(2) + (stock.quantity.match(/[a-zA-Z]+/) || [''])[0];
-                            if (parseFloat(stock.quantity) <= 0) {
-                                inventory = inventory.filter(item => item.name !== stock.name);
-                            }
-                            localStorage.setItem('inventory', JSON.stringify(inventory));
-                            updateInventoryTable();
-                            updateIngredientSelect(ingredients);
-                        }
-                    }
+                    selectedIngredients.push({ ingredient, quantity });
                 }
             });
             updateSelectedIngredients();
         });
 
-        // Eliminar ingrediente seleccionado
+        // Función para eliminar un ingrediente seleccionado
         function removeIngredient(ingredientName) {
             selectedIngredients = selectedIngredients.filter(({ ingredient }) => ingredient !== ingredientName);
             updateSelectedIngredients();
         }
 
-        // Actualizar lista de ingredientes seleccionados
+        // Función para actualizar la lista de ingredientes seleccionados con botón de eliminación
         function updateSelectedIngredients() {
             const selectedIngredientsDiv = document.getElementById('selected-ingredients');
             selectedIngredientsDiv.innerHTML = selectedIngredients
-                .map(({ ingredient, quantity, message }) => `
+                .map(({ ingredient, quantity }) => `
                     <div style="display: flex; align-items: center; margin-bottom: 5px;">
                         <img src="${getIngredientImage(ingredient)}" 
                              alt="${ingredient}" 
                              style="width:30px; height:30px; margin-right:10px;"
                              onerror="this.src='https://via.placeholder.com/30?text=${ingredient}';">
-                        <span>${ingredient} (${quantity})${message ? ' - ' + message : ''}</span>
+                        <span>${ingredient} (${quantity})</span>
                         <button class="remove-ingredient" data-ingredient="${ingredient}" 
                                 style="margin-left:10px; background-color:#d9534f; color:white; border:none; 
                                        padding:2px 5px; font-size:12px; width: 20px; height: 20px; cursor:pointer; 
@@ -645,6 +444,7 @@
                 `)
                 .join('');
 
+            // Agregar event listener a los botones de eliminación
             document.querySelectorAll('.remove-ingredient').forEach(button => {
                 button.addEventListener('click', () => {
                     removeIngredient(button.getAttribute('data-ingredient'));
@@ -652,7 +452,7 @@
             });
         }
 
-        // Cargar recetas guardadas
+        // Cargar recetas guardadas desde localStorage
         function loadRecipesFromStorage() {
             const storedRecipes = localStorage.getItem('recipes');
             if (storedRecipes) {
@@ -663,24 +463,20 @@
             }
         }
 
-        // Mostrar recetas
+        // Mostrar recetas guardadas con botón de imprimir
         function displayRecipe(recipe, index) {
             const recipeCard = document.createElement('div');
             recipeCard.classList.add('recipe-card');
             recipeCard.setAttribute('data-index', index);
-            const isViable = recipe.ingredients.every(({ ingredient }) => {
-                const stock = inventory.find(item => item.name.toLowerCase() === ingredient.toLowerCase());
-                return stock && !isLowStock(stock.quantity);
-            });
             recipeCard.innerHTML = `
-                <h3>${recipe.name}${isViable ? '' : ' <span style="color:red">(Ingredientes insuficientes)</span>'}</h3>
+                <h3>${recipe.name}</h3>
                 <p><strong>Ingredientes:</strong></p>
                 <div>
-                    ${recipe.ingredients.map(({ ingredient, quantity, message }, idx) => `
+                    ${recipe.ingredients.map(({ ingredient, quantity }, idx) => `
                         <div style="display: flex; align-items: center; margin-bottom: 5px;">
                             <img src="${recipe.images[idx]}" alt="${ingredient}" style="width:50px; height:50px; margin-right:10px;"
                                  onerror="this.src='https://via.placeholder.com/50?text=${ingredient}';">
-                            <span>${ingredient} (${quantity})${message ? ' - ' + message : ''}</span>
+                            <span>${ingredient} (${quantity})</span>
                         </div>
                     `).join('')}
                 </div>
@@ -692,12 +488,14 @@
             document.getElementById('recipes-list').appendChild(recipeCard);
         }
 
-        // Guardar receta
+        // Guardar y manejar el formulario
         document.getElementById('recipe-form').addEventListener('submit', (e) => {
             e.preventDefault();
+
             const recipeName = document.getElementById('recipe-name').value;
             const steps = document.getElementById('steps').value;
             const images = selectedIngredients.map(ingredient => getIngredientImage(ingredient.ingredient));
+
             const recipe = { name: recipeName, ingredients: selectedIngredients, steps, images };
             const editingIndex = document.getElementById('recipe-form').dataset.editingIndex;
 
@@ -711,6 +509,7 @@
             localStorage.setItem('recipes', JSON.stringify(recipes));
             document.getElementById('recipes-list').innerHTML = '';
             recipes.forEach((recipe, index) => displayRecipe(recipe, index));
+
             document.getElementById('recipe-form').reset();
             selectedIngredients = [];
             updateSelectedIngredients();
@@ -734,7 +533,7 @@
             recipes.forEach((recipe, idx) => displayRecipe(recipe, idx));
         }
 
-        // Imprimir receta
+        // Función imprimir receta
         function printRecipe(index) {
             const recipe = recipes[index];
             const printWindow = window.open('', '_blank');
@@ -748,18 +547,17 @@
                         h2 { font-size: 18px; margin-top: 20px; }
                         .ingredient { display: flex; align-items: center; margin-bottom: 10px; }
                         img { width: 50px; height: 50px; margin-right: 10px; }
-                        .message { font-style: italic; color: #555; }
                     </style>
                 </head>
                 <body>
                     <h1>${recipe.name}</h1>
                     <h2>Ingredientes</h2>
                     <div>
-                        ${recipe.ingredients.map(({ ingredient, quantity, message }, idx) => `
+                        ${recipe.ingredients.map(({ ingredient, quantity }, idx) => `
                             <div class="ingredient">
                                 <img src="${recipe.images[idx]}" alt="${ingredient}" 
                                      onerror="this.src='https://via.placeholder.com/50?text=${ingredient}';">
-                                <span>${ingredient} (${quantity})${message ? ' <span class="message">- ' + message + '</span>' : ''}</span>
+                                <span>${ingredient} (${quantity})</span>
                             </div>
                         `).join('')}
                     </div>
@@ -772,10 +570,12 @@
             printWindow.document.close();
         }
 
-        // Delegación de eventos para recetas
+        // Editar, eliminar e imprimir recetas (con delegación de eventos)
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('edit-recipe-btn')) {
-                editRecipe(e.target.getAttribute('data-index'));
+                const index = e.target.getAttribute('data-index');
+                editRecipe(index);
+                console.log('Editando receta en índice:', index); // Para depuración
             } else if (e.target.classList.contains('delete-recipe-btn')) {
                 deleteRecipe(e.target.getAttribute('data-index'));
             } else if (e.target.classList.contains('print-recipe-btn')) {
@@ -793,16 +593,21 @@
         // Agregar nuevo ingrediente
         document.getElementById('add-ingredient-form').addEventListener('submit', (e) => {
             e.preventDefault();
+
             const newIngredientName = document.getElementById('new-ingredient-name').value.trim();
             const newIngredientImage = document.getElementById('new-ingredient-image').value.trim();
 
             if (newIngredientName && newIngredientImage) {
+                // Guardar en customIngredients
                 customIngredients[newIngredientName.toLowerCase()] = { image: newIngredientImage };
                 localStorage.setItem('customIngredients', JSON.stringify(customIngredients));
+
+                // Actualizar la lista de ingredientes
                 if (!ingredients.includes(newIngredientName)) {
                     ingredients.push(newIngredientName);
                     updateIngredientSelect(ingredients);
                 }
+
                 document.getElementById('add-ingredient-form').reset();
                 alert('Ingrediente agregado con éxito!');
             } else {
@@ -814,13 +619,15 @@
         document.addEventListener("DOMContentLoaded", function () {
             loadIngredients();
             loadRecipesFromStorage();
-            loadInventory();
+
+            // Corrección de EmailJS
             emailjs.init("hqLFCpK3qVkTF0Fdk");
 
             const commentForm = document.getElementById("comment-form");
             if (commentForm) {
                 commentForm.addEventListener("submit", function (event) {
                     event.preventDefault();
+
                     const name = document.getElementById("name").value.trim();
                     const email = document.getElementById("email").value.trim();
                     const comment = document.getElementById("comment").value.trim();
@@ -831,12 +638,15 @@
                     }
 
                     const formData = { name, email, comment };
+
                     emailjs.send("service_3a04o94", "template_3lb7au9", formData)
-                        .then(function () {
+                        .then(function (response) {
+                            console.log("Comentario enviado con éxito:", response);
                             alert("Comentario enviado con éxito.");
                             commentForm.reset();
                         })
-                        .catch(function () {
+                        .catch(function (error) {
+                            console.error("Error al enviar el comentario:", error);
                             alert("Ocurrió un error al enviar el comentario.");
                         });
                 });
