@@ -10,7 +10,6 @@
     <title>Recetas de Cocina</title>
 </head>
 <header>
-
     <section class="info-section">
         <h2>Información de Contacto</h2>
         <div class="info-container">
@@ -49,7 +48,8 @@
             max-width: 700px;
             margin: 2rem auto;
             padding: 2rem;
-            background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 30%, #388E3C 60%, #43A047 100%);            border-radius: 15px;
+            background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 30%, #388E3C 60%, #43A047 100%);            
+            border-radius: 15px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #1B5E20;
@@ -480,7 +480,8 @@
                         </div>
                     `).join('')}
                 </div>
-                <p><strong>Pasos:</strong> ${recipe.steps}</p>
+                <p><strong>Pasos:</strong></p>
+                <div>${recipe.steps.split('\n').map(step => `<p>${step.trim() || ' '}</p>`).join('')}</div>
                 <button class="edit-recipe-btn" data-index="${index}">Editar</button>
                 <button class="delete-recipe-btn" data-index="${index}">Eliminar</button>
                 <button class="print-recipe-btn" data-index="${index}">Imprimir</button>
