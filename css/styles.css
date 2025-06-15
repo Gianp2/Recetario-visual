@@ -276,12 +276,13 @@ button:hover {
 
 /* Estilos para los íconos de ingredientes en recetas guardadas */
 .ingredient-icon-recipe {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   margin-right: 15px;
-  object-fit: cover; /* Asegura que la imagen se ajuste bien */
+  object-fit: cover;
   vertical-align: middle;
 }
+
 
 .ingredient-icon-recipe.error {
   background-color: #f0f0f0;
