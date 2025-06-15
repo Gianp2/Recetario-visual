@@ -1,294 +1,104 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background-color: #282c28;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-main {
-    padding: 20px;
-}
-.info-section {
-    background-color: #fafafa;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-    max-width: 500px;
-    margin: 20px auto;
-    border: 1px solid #ddd;
-}
-
-.info-section h2 {
-    font-size: 22px;
-    color: #555;
-    font-weight: 500;
-    margin-bottom: 10px;
-}
-
-.info-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.info-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 16px;
-    color: #444;
-    padding: 8px 0;
-}
-
-.info-item i {
-    font-size: 18px;
-    color: #007bff;
-}
-
-.info-item span {
-    font-weight: 400;
-}
-
-
-.form-section, #recipes-section {
-    background-color: white;
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-}
-
-input, textarea, select, button {
-    width: 100%;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-.recipe-card {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
-}
-
-.edit-recipe-btn, .delete-recipe-btn {
-    padding: 5px 10px;
-    margin: 5px;
-    cursor: pointer;
-}
-
-.edit-recipe-btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-}
-
-.delete-recipe-btn {
-    background-color: #f44336;
-    color: white;
-    border: none;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-.inventario-container {
-  max-width: 500px;
-  margin: 20px auto;
+.container {
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  background: #f9f9f9;
-}
-
-#formulario-inventario input {
-  padding: 10px;
-  margin: 5px;
-  width: calc(100% - 22px);
-  box-sizing: border-box;
-}
-
-#formulario-inventario button {
-  padding: 10px;
-  width: 100%;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  margin-top: 10px;
-  cursor: pointer;
-}
-
-#listaInventario {
-  margin-top: 20px;
-  list-style-type: none;
-  padding: 0;
-}
-
-#listaInventario li {
-  background: #e3f2fd;
-  margin: 5px 0;
-  padding: 10px;
-  border-radius: 6px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.boton-eliminar {
-  background-color: crimson;
-  color: white;
-  border: none;
-  padding: 4px 8px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-#scrollToContentBtn {
-  background-color: #4CAF50; /* Verde suave */
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 1rem;
+  background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#scrollToContentBtn:hover {
-  background-color: #45a049; /* Verde un poco más oscuro */
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+.title {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
 }
 
-#scrollToContentBtn:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+.image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-
-#selected-ingredients {
-    margin-top: 10px;
+.info {
+  margin-bottom: 20px;
 }
 
-.recipe-card {
-    margin: 10px 0;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fefefe;
-}
-/* Estilos para el popup de cantidad de ingredientes */
-.popup {
-    display: none; /* Oculto por defecto */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+.info p {
+  margin: 5px 0;
+  font-size: 1.1em;
 }
 
-.popup-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    width: 300px;
+.section {
+  margin-bottom: 20px;
 }
 
-.popup-content h3 {
-    margin-bottom: 15px;
+.section h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  color: #444;
 }
 
-.popup-content input {
-    width: 80px;
-    padding: 5px;
-    font-size: 18px;
-    text-align: center;
+.ingredientsList {
+  list-style-type: disc;
+  padding-left: 20px;
 }
 
-.popup-buttons {
-    margin-top: 15px;
+.ingredientsList li {
+  margin: 5px 0;
+  font-size: 1.1em;
 }
 
-.popup-buttons button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    margin: 5px;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.popup-buttons button:hover {
-    background-color: #45a049;
-}
-
-#cancel-quantity {
-    background-color: #d9534f;
-}
-
-#cancel-quantity:hover {
-    background-color: #c9302c;
-}
-
-/* Estilos para los íconos de ingredientes seleccionados */
-.ingredient-icon-selected {
-  width: 60px;
-  height: 60px;
-  margin-right: 15px;
-  object-fit: cover; /* Asegura que la imagen se ajuste bien */
-  vertical-align: middle;
-}
-
-.ingredient-icon-selected.error {
-  background-color: #f0f0f0;
+.stepsContainer {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #555;
-  font-size: 14px;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-/* Estilos para los íconos de ingredientes en recetas guardadas */
-.ingredient-icon-recipe {
-  width: 120px;
-  height: 120px;
-  margin-right: 15px;
-  object-fit: cover;
-  vertical-align: middle;
+.step {
+  flex: 1 1 45%;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-
-.ingredient-icon-recipe.error {
-  background-color: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.step h3 {
+  margin-top: 0;
+  font-size: 1.2em;
   color: #555;
-  font-size: 16px;
+}
+
+.step p {
+  margin: 5px 0 0;
+}
+
+@media print {
+  .container {
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .stepsContainer {
+    display: block; /* Apila los pasos verticalmente para impresión */
+  }
+
+  .step {
+    flex: none; /* Elimina propiedades de flex */
+    margin-bottom: 20px; /* Agrega espacio entre pasos */
+    page-break-inside: avoid; /* Evita que los pasos se dividan entre páginas */
+  }
+
+  .image {
+    max-width: 50%; /* Reduce el tamaño de la imagen para una mejor impresión */
+  }
+
+  /* Oculta elementos innecesarios durante la impresión */
+  .no-print {
+    display: none;
+  }
 }
