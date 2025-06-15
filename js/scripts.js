@@ -274,33 +274,45 @@ function loadRecipesFromStorage() {
     }
 }
 
-// Mostrar recetas guardadas con botón de imprimir
-function displayRecipe(recipe, index) {
-    const recipeCard = document.createElement('div');
-    recipeCard.classList.add('recipe-card');
-    recipeCard.setAttribute('data-index', index);
-    const stepsArray = recipe.steps.split('\n').filter(step => step.trim() !== ''); // Divide los pasos por saltos de línea
-    recipeCard.innerHTML = `
-        <h3>${recipe.name}</h3>
-        <p><strong>Ingredientes:</strong></p>
-        <div>
-            ${recipe.ingredients.map(({ ingredient, quantity }, idx) => `
-                <div style="display: flex; align-items: center; margin-bottom: 5px;">
-                    <img src="${recipe.images[idx]}" alt="${ingredient}" style="width:50px; height:50px; margin-right:10px;"
-                         onerror="this.src='https://via.placeholder.com/50?text=${ingredient}';">
-                    <span>${ingredient} (${quantity})</span>
-                </div>
-            `).join('')}
-        </div>
-        <p><strong>Pasos:</strong></p>
-        <ul>
-            ${stepsArray.map(step => `<li>${step.trim()}</li>`).join('')}
-        </ul>
-        <button class="edit-recipe-btn" data-index="${index}">Editar</button>
-        <button class="delete-recipe-btn" data-index="${index}">Eliminar</button>
-        <button class="print-recipe-btn" data-index="${index}">Imprimir</button>
-    `;
-    recipesList.appendChild(recipeCard);
+// Función imprimir receta
+function printRecipe(index) {
+    const recipe = recipes[index];
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+        <html>
+        <head>
+            <title>${recipe.name}</title>
+            <style>
+                body { font-family: Arial, sans-serif; padding: 20px; }
+                h1 { font-size: 24px; }
+                h2 { font-size: 18px; margin-top: 20px; }
+                .ingredient { display: flex; align-items: center; margin-bottom: 10px; }
+                img { width: 50px; height: 50px; margin-right: 10px; }
+                ul { list-style-type: decimal; padding-left: 20px; }
+                li { margin-bottom: 5px; }
+            </style>
+        </head>
+        <body>
+            <h1>${recipe.name}</h1>
+            <h2>Ingredientes</h2>
+            <div>
+                ${recipe.ingredients.map(({ ingredient, quantity }, idx) => `
+                    <div class="ingredient">
+                        <img src="${recipe.images[idx]}" alt="${ingredient}" 
+                             onerror="this.src='https://via.placeholder.com/50?text=${ingredient}';">
+                        <span>${ingredient} (${quantity})</span>
+                    </div>
+                `).join('')}
+            </div>
+            <h2>Pasos</h2>
+            <ul>
+                ${recipe.steps.split('\n').filter(step => step.trim() !== '').map(step => `<li>${step.trim()}</li>`).join('')}
+            </ul>
+            <script>window.print(); window.close();<\/script>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
 }
 // Guardar y manejar el formulario
 recipeForm.addEventListener('submit', (e) => {
