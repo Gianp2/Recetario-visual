@@ -344,11 +344,18 @@ recipeForm.addEventListener('submit', (e) => {
 // Editar receta
 function editRecipe(index) {
     const recipe = recipes[index];
+    // Llenar el formulario con los datos de la receta
     document.getElementById('recipe-name').value = recipe.name;
     document.getElementById('steps').value = recipe.steps;
     selectedIngredients = [...recipe.ingredients];
     updateSelectedIngredients();
     recipeForm.dataset.editingIndex = index;
+
+    // Desplazarse al formulario
+    const recipeFormContainer = document.getElementById('recipe-form-container');
+    if (recipeFormContainer) {
+        recipeFormContainer.scrollIntoView({ behavior: 'smooth' });
+    }
 }
 
 // Eliminar receta
