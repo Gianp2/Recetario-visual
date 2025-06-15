@@ -279,7 +279,7 @@ function displayRecipe(recipe, index) {
     const recipeCard = document.createElement('div');
     recipeCard.classList.add('recipe-card');
     recipeCard.setAttribute('data-index', index);
-    const stepsArray = recipe.steps.split('\n').filter(step => step.trim() !== '');
+    const stepsArray = recipe.steps.split('\n').filter(step => step.trim() !== ''); // Divide los pasos por saltos de línea
     recipeCard.innerHTML = `
         <h3>${recipe.name}</h3>
         <p><strong>Ingredientes:</strong></p>
@@ -302,7 +302,6 @@ function displayRecipe(recipe, index) {
     `;
     recipesList.appendChild(recipeCard);
 }
-
 // Guardar y manejar el formulario
 recipeForm.addEventListener('submit', (e) => {
     e.preventDefault();
