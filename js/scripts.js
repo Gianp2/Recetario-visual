@@ -10,38 +10,38 @@ const lista = document.getElementById('listaInventario');
 let inventario = {};
 
 form.addEventListener('submit', function (e) {
-  e.preventDefault();
-  const nombre = document.getElementById('nombreProducto').value.trim().toLowerCase();
-  const cantidad = parseFloat(document.getElementById('cantidadProducto').value);
+    e.preventDefault();
+    const nombre = document.getElementById('nombreProducto').value.trim().toLowerCase();
+    const cantidad = parseFloat(document.getElementById('cantidadProducto').value);
 
-  if (!nombre || isNaN(cantidad)) return;
+    if (!nombre || isNaN(cantidad)) return;
 
-  // Agregar o actualizar producto
-  inventario[nombre] = (inventario[nombre] || 0) + cantidad;
+    // Agregar o actualizar producto
+    inventario[nombre] = (inventario[nombre] || 0) + cantidad;
 
-  actualizarLista();
-  form.reset();
+    actualizarLista();
+    form.reset();
 });
 
 function actualizarLista() {
-  lista.innerHTML = '';
+    lista.innerHTML = '';
 
-  Object.keys(inventario).forEach(nombre => {
-    const li = document.createElement('li');
-    li.innerHTML = `
-      <span><strong>${nombre}</strong>: ${inventario[nombre]} kg/unid</span>
-      <button class="boton-eliminar" onclick="eliminarProducto('${nombre}')">Eliminar</button>
-    `;
-    lista.appendChild(li);
-  });
+    Object.keys(inventario).forEach(nombre => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <span><strong>${nombre}</strong>: ${inventario[nombre]} kg/unid</span>
+            <button class="boton-eliminar" onclick="eliminarProducto('${nombre}')">Eliminar</button>
+        `;
+        lista.appendChild(li);
+    });
 }
 
 function eliminarProducto(nombre) {
-  delete inventario[nombre];
-  actualizarLista();
+    delete inventario[nombre];
+    actualizarLista();
 }
 
-// traducción de ingredientes al inglés
+// Traducción de ingredientes al inglés
 const ingredientTranslations = {
     "Aceite": "Oil",
     "Acelga": "Chard",
@@ -186,18 +186,11 @@ let ingredients = Object.keys(ingredientTranslations);
 let selectedIngredients = [];
 let recipes = [];
 
-// Obtener img del ingrediente
+// Obtener imagen del ingrediente
 function getIngredientImage(ingredient) {
     let translated = ingredientTranslations[ingredient] || ingredient;
     return `https://www.themealdb.com/images/ingredients/${translated}.png`;
 }
-
-function obtenerImagenIngrediente(ingrediente) {
-  // Reemplazar espacios por guiones y pasar a minúsculas
-  const nombreFormateado = ingrediente.toLowerCase().replace(/\s+/g, '-');
-  return `https://spoonacular.com/cdn/ingredients_100x100/${nombreFormateado}.jpg`;
-}
-
 
 // Cargar lista de ingredientes al iniciar
 function loadIngredients() {
@@ -234,7 +227,6 @@ document.getElementById('add-ingredients-btn').addEventListener('click', () => {
             selectedIngredients.push({ ingredient, quantity });
         }
     });
-
     updateSelectedIngredients();
 });
 
@@ -287,6 +279,7 @@ function displayRecipe(recipe, index) {
     const recipeCard = document.createElement('div');
     recipeCard.classList.add('recipe-card');
     recipeCard.setAttribute('data-index', index);
+    const stepsArray = recipe.steps.split('\n').filter(step => step.trim() !== '');
     recipeCard.innerHTML = `
         <h3>${recipe.name}</h3>
         <p><strong>Ingredientes:</strong></p>
@@ -299,7 +292,10 @@ function displayRecipe(recipe, index) {
                 </div>
             `).join('')}
         </div>
-        <p><strong>Pasos:</strong> ${recipe.steps}</p>
+        <p><strong>Pasos:</strong></p>
+        <ul>
+            ${stepsArray.map(step => `<li>${step.trim()}</li>`).join('')}
+        </ul>
         <button class="edit-recipe-btn" data-index="${index}">Editar</button>
         <button class="delete-recipe-btn" data-index="${index}">Eliminar</button>
         <button class="print-recipe-btn" data-index="${index}">Imprimir</button>
@@ -307,7 +303,7 @@ function displayRecipe(recipe, index) {
     recipesList.appendChild(recipeCard);
 }
 
-// Guardar y manejar el formulario 
+// Guardar y manejar el formulario
 recipeForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -325,8 +321,6 @@ recipeForm.addEventListener('submit', (e) => {
         recipes.push(recipe);
     }
 
-
-    
     localStorage.setItem('recipes', JSON.stringify(recipes));
     recipesList.innerHTML = '';
     recipes.forEach((recipe, index) => displayRecipe(recipe, index));
@@ -383,7 +377,9 @@ function printRecipe(index) {
                 `).join('')}
             </div>
             <h2>Pasos</h2>
-            <p>${recipe.steps}</p>
+            <ul>
+                ${recipe.steps.split('\n').filter(step => step.trim() !== '').map(step => `<li>${step.trim()}</li>`).join('')}
+            </ul>
             <script>window.print(); window.close();<\/script>
         </body>
         </html>
@@ -391,7 +387,7 @@ function printRecipe(index) {
     printWindow.document.close();
 }
 
-// editar, eliminar e imprimir recetas
+// Editar, eliminar e imprimir recetas
 document.addEventListener('click', (e) => {
     if (e.target.classList.contains('edit-recipe-btn')) {
         editRecipe(e.target.getAttribute('data-index'));
@@ -415,7 +411,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadRecipesFromStorage();
 });
 
-// Código para EmailJS (sin cambios)
+// Código para EmailJS
 document.addEventListener("DOMContentLoaded", function () {
     emailjs.init("q5GaGBca1N9M-RrbL");
 
@@ -435,8 +431,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const formData = { name, email, comment };
 
-            emailjs.send("service_3a04o94","template_3lb7au9");
-                then(function (response) {
+            emailjs.send("service_3a04o94", "template_3lb7au9", formData)
+                .then(function (response) {
                     console.log("Comentario enviado con éxito:", response);
                     alert("Comentario enviado con éxito.");
                     commentForm.reset();
