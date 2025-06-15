@@ -276,8 +276,8 @@ button:hover {
 
 /* Estilos para los íconos de ingredientes en recetas guardadas */
 .ingredient-icon-recipe {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   margin-right: 15px;
   object-fit: cover;
   vertical-align: middle;
