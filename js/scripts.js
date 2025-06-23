@@ -186,36 +186,10 @@ let ingredients = Object.keys(ingredientTranslations);
 let selectedIngredients = [];
 let recipes = [];
 
-// Agregar una clave API de Remove.bg (obtén una en https://www.remove.bg/api)
-const REMOVE_BG_API_KEY = 'TU_CLAVE_API_AQUÍ'; // Reemplaza con tu clave de Remove.bg
-
-// Función para quitar el fondo de una imagen usando Remove.bg
-async function removeBackground(imageUrl) {
-    try {
-        const response = await fetch('https://api.remove.bg/v1.0/removebg', {
-            method: 'POST',
-            headers: {
-                'X-Api-Key': REMOVE_BG_API_KEY,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ image_url: imageUrl }),
-        });
-        if (!response.ok) throw new Error('Error en la API de Remove.bg');
-        const data = await response.blob();
-        return URL.createObjectURL(data); // Devuelve una URL para la imagen sin fondo
-    } catch (error) {
-        console.error('Error al quitar el fondo:', error);
-        return null; // En caso de error, retorna null
-    }
-}
-
 // Obtener imagen del ingrediente
-async function getIngredientImage(ingredient, customImageUrl = null) {
-    if (customImageUrl) {
-        const processedImage = await removeBackground(customImageUrl);
-        return processedImage || `https://www.themealdb.com/images/ingredients/${ingredientTranslations[ingredient] || ingredient}.png`;
-    }
-    return `https://www.themealdb.com/images/ingredients/${ingredientTranslations[ingredient] || ingredient}.png`;
+function getIngredientImage(ingredient) {
+    let translated = ingredientTranslations[ingredient] || ingredient;
+    return `https://www.themealdb.com/images/ingredients/${translated}.png`;
 }
 
 // Cargar lista de ingredientes al iniciar
@@ -243,21 +217,17 @@ ingredientSearch.addEventListener('input', () => {
     updateIngredientSelect(filteredIngredients);
 });
 
-// Función para agregar ingredientes con cantidad y URL de imagen
-document.getElementById('add-ingredients-btn').addEventListener('click', async () => {
+// Función para agregar ingredientes con cantidad usando prompt
+document.getElementById('add-ingredients-btn').addEventListener('click', () => {
     const selectedOptions = Array.from(ingredientSelect.selectedOptions);
-    const imageUrl = document.getElementById('image-url').value.trim(); // Nuevo campo para URL
-
-    for (const option of selectedOptions) {
+    selectedOptions.forEach(option => {
         const ingredient = option.value;
         const quantity = prompt(`¿Cuántos ${ingredient} necesitas?`);
         if (quantity) {
-            const image = await getIngredientImage(ingredient, imageUrl || null); // Procesar imagen personalizada si existe
-            selectedIngredients.push({ ingredient, quantity, image });
+            selectedIngredients.push({ ingredient, quantity });
         }
-    }
+    });
     updateSelectedIngredients();
-    document.getElementById('image-url').value = ''; // Limpiar campo de URL
 });
 
 // Función para eliminar un ingrediente seleccionado
@@ -269,9 +239,9 @@ function removeIngredient(ingredientName) {
 // Función para actualizar la lista de ingredientes seleccionados con botón de eliminación
 function updateSelectedIngredients() {
     selectedIngredientsDiv.innerHTML = selectedIngredients
-        .map(({ ingredient, quantity, image }) => `
+        .map(({ ingredient, quantity }) => `
             <div style="display: flex; align-items: center; margin-bottom: 5px;">
-                <img src="${image}" 
+                <img src="${getIngredientImage(ingredient)}" 
                      alt="${ingredient}" 
                      style="width:30px; height:30px; margin-right:10px;"
                      onerror="this.src='https://via.placeholder.com/30?text=${ingredient}';">
@@ -314,9 +284,9 @@ function displayRecipe(recipe, index) {
         <h3>${recipe.name}</h3>
         <p><strong>Ingredientes:</strong></p>
         <div>
-            ${recipe.ingredients.map(({ ingredient, quantity, image }, idx) => `
+            ${recipe.ingredients.map(({ ingredient, quantity }, idx) => `
                 <div style="display: flex; align-items: center; margin-bottom: 5px;">
-                    <img src="${image}" alt="${ingredient}" style="width:50px; height:50px; margin-right:10px;"
+                    <img src="${recipe.images[idx]}" alt="${ingredient}" style="width:50px; height:50px; margin-right:10px;"
                          onerror="this.src='https://via.placeholder.com/50?text=${ingredient}';">
                     <span>${ingredient} (${quantity})</span>
                 </div>
@@ -334,12 +304,12 @@ function displayRecipe(recipe, index) {
 }
 
 // Guardar y manejar el formulario
-recipeForm.addEventListener('submit', async (e) => {
+recipeForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const recipeName = document.getElementById('recipe-name').value;
     const steps = document.getElementById('steps').value;
-    const images = selectedIngredients.map(({ image }) => image); // Usar las imágenes procesadas
+    const images = selectedIngredients.map(ingredient => getIngredientImage(ingredient.ingredient));
 
     const recipe = { name: recipeName, ingredients: selectedIngredients, steps, images };
     const editingIndex = recipeForm.dataset.editingIndex;
@@ -398,9 +368,9 @@ function printRecipe(index) {
             <h1>${recipe.name}</h1>
             <h2>Ingredientes</h2>
             <div>
-                ${recipe.ingredients.map(({ ingredient, quantity, image }, idx) => `
+                ${recipe.ingredients.map(({ ingredient, quantity }, idx) => `
                     <div class="ingredient">
-                        <img src="${image}" alt="${ingredient}" 
+                        <img src="${recipe.images[idx]}" alt="${ingredient}" 
                              onerror="this.src='https://via.placeholder.com/50?text=${ingredient}';">
                         <span>${ingredient} (${quantity})</span>
                     </div>
