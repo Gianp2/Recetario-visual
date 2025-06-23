@@ -186,10 +186,36 @@ let ingredients = Object.keys(ingredientTranslations);
 let selectedIngredients = [];
 let recipes = [];
 
+// Agregar una clave API de Remove.bg (obtén una en https://www.remove.bg/api)
+const REMOVE_BG_API_KEY = 'TU_CLAVE_API_AQUÍ'; // Reemplaza con tu clave de Remove.bg
+
+// Función para quitar el fondo de una imagen usando Remove.bg
+async function removeBackground(imageUrl) {
+    try {
+        const response = await fetch('https://api.remove.bg/v1.0/removebg', {
+            method: 'POST',
+            headers: {
+                'X-Api-Key': REMOVE_BG_API_KEY,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ image_url: imageUrl }),
+        });
+        if (!response.ok) throw new Error('Error en la API de Remove.bg');
+        const data = await response.blob();
+        return URL.createObjectURL(data); // Devuelve una URL para la imagen sin fondo
+    } catch (error) {
+        console.error('Error al quitar el fondo:', error);
+        return null; // En caso de error, retorna null
+    }
+}
+
 // Obtener imagen del ingrediente
-function getIngredientImage(ingredient) {
-    let translated = ingredientTranslations[ingredient] || ingredient;
-    return `https://www.themealdb.com/images/ingredients/${translated}.png`;
+async function getIngredientImage(ingredient, customImageUrl = null) {
+    if (customImageUrl) {
+        const processedImage = await removeBackground(customImageUrl);
+        return processedImage || `https://www.themealdb.com/images/ingredients/${ingredientTranslations[ingredient] || ingredient}.png`;
+    }
+    return `https://www.themealdb.com/images/ingredients/${ingredientTranslations[ingredient] || ingredient}.png`;
 }
 
 // Cargar lista de ingredientes al iniciar
@@ -217,17 +243,21 @@ ingredientSearch.addEventListener('input', () => {
     updateIngredientSelect(filteredIngredients);
 });
 
-// Función para agregar ingredientes con cantidad usando prompt
-document.getElementById('add-ingredients-btn').addEventListener('click', () => {
+// Función para agregar ingredientes con cantidad y URL de imagen
+document.getElementById('add-ingredients-btn').addEventListener('click', async () => {
     const selectedOptions = Array.from(ingredientSelect.selectedOptions);
-    selectedOptions.forEach(option => {
+    const imageUrl = document.getElementById('image-url').value.trim(); // Nuevo campo para URL
+
+    for (const option of selectedOptions) {
         const ingredient = option.value;
         const quantity = prompt(`¿Cuántos ${ingredient} necesitas?`);
         if (quantity) {
-            selectedIngredients.push({ ingredient, quantity });
+            const image = await getIngredientImage(ingredient, imageUrl || null); // Procesar imagen personalizada si existe
+            selectedIngredients.push({ ingredient, quantity, image });
         }
-    });
+    }
     updateSelectedIngredients();
+    document.getElementById('image-url').value = ''; // Limpiar campo de URL
 });
 
 // Función para eliminar un ingrediente seleccionado
@@ -239,9 +269,9 @@ function removeIngredient(ingredientName) {
 // Función para actualizar la lista de ingredientes seleccionados con botón de eliminación
 function updateSelectedIngredients() {
     selectedIngredientsDiv.innerHTML = selectedIngredients
-        .map(({ ingredient, quantity }) => `
+        .map(({ ingredient, quantity, image }) => `
             <div style="display: flex; align-items: center; margin-bottom: 5px;">
-                <img src="${getIngredientImage(ingredient)}" 
+                <img src="${image}" 
                      alt="${ingredient}" 
                      style="width:30px; height:30px; margin-right:10px;"
                      onerror="this.src='https://via.placeholder.com/30?text=${ingredient}';">
@@ -274,53 +304,42 @@ function loadRecipesFromStorage() {
     }
 }
 
-// Función imprimir receta
-function printRecipe(index) {
-    const recipe = recipes[index];
-    const printWindow = window.open('', '_blank');
-    printWindow.document.write(`
-        <html>
-        <head>
-            <title>${recipe.name}</title>
-            <style>
-                body { font-family: Arial, sans-serif; padding: 20px; }
-                h1 { font-size: 24px; }
-                h2 { font-size: 18px; margin-top: 20px; }
-                .ingredient { display: flex; align-items: center; margin-bottom: 10px; }
-                img { width: 50px; height: 50px; margin-right: 10px; }
-                ul { list-style-type: decimal; padding-left: 20px; }
-                li { margin-bottom: 5px; }
-            </style>
-        </head>
-        <body>
-            <h1>${recipe.name}</h1>
-            <h2>Ingredientes</h2>
-            <div>
-                ${recipe.ingredients.map(({ ingredient, quantity }, idx) => `
-                    <div class="ingredient">
-                        <img src="${recipe.images[idx]}" alt="${ingredient}" 
-                             onerror="this.src='https://via.placeholder.com/50?text=${ingredient}';">
-                        <span>${ingredient} (${quantity})</span>
-                    </div>
-                `).join('')}
-            </div>
-            <h2>Pasos</h2>
-            <ul>
-                ${recipe.steps.split('\n').filter(step => step.trim() !== '').map(step => `<li>${step.trim()}</li>`).join('')}
-            </ul>
-            <script>window.print(); window.close();<\/script>
-        </body>
-        </html>
-    `);
-    printWindow.document.close();
+// Mostrar recetas guardadas con botón de imprimir
+function displayRecipe(recipe, index) {
+    const recipeCard = document.createElement('div');
+    recipeCard.classList.add('recipe-card');
+    recipeCard.setAttribute('data-index', index);
+    const stepsArray = recipe.steps.split('\n').filter(step => step.trim() !== '');
+    recipeCard.innerHTML = `
+        <h3>${recipe.name}</h3>
+        <p><strong>Ingredientes:</strong></p>
+        <div>
+            ${recipe.ingredients.map(({ ingredient, quantity, image }, idx) => `
+                <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                    <img src="${image}" alt="${ingredient}" style="width:50px; height:50px; margin-right:10px;"
+                         onerror="this.src='https://via.placeholder.com/50?text=${ingredient}';">
+                    <span>${ingredient} (${quantity})</span>
+                </div>
+            `).join('')}
+        </div>
+        <p><strong>Pasos:</strong></p>
+        <ul>
+            ${stepsArray.map(step => `<li>${step.trim()}</li>`).join('')}
+        </ul>
+        <button class="edit-recipe-btn" data-index="${index}">Editar</button>
+        <button class="delete-recipe-btn" data-index="${index}">Eliminar</button>
+        <button class="print-recipe-btn" data-index="${index}">Imprimir</button>
+    `;
+    recipesList.appendChild(recipeCard);
 }
+
 // Guardar y manejar el formulario
-recipeForm.addEventListener('submit', (e) => {
+recipeForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const recipeName = document.getElementById('recipe-name').value;
     const steps = document.getElementById('steps').value;
-    const images = selectedIngredients.map(ingredient => getIngredientImage(ingredient.ingredient));
+    const images = selectedIngredients.map(({ image }) => image); // Usar las imágenes procesadas
 
     const recipe = { name: recipeName, ingredients: selectedIngredients, steps, images };
     const editingIndex = recipeForm.dataset.editingIndex;
@@ -344,18 +363,11 @@ recipeForm.addEventListener('submit', (e) => {
 // Editar receta
 function editRecipe(index) {
     const recipe = recipes[index];
-    // Llenar el formulario con los datos de la receta
     document.getElementById('recipe-name').value = recipe.name;
     document.getElementById('steps').value = recipe.steps;
     selectedIngredients = [...recipe.ingredients];
     updateSelectedIngredients();
     recipeForm.dataset.editingIndex = index;
-
-    // Desplazarse al formulario
-    const recipeFormContainer = document.getElementById('recipe-form-container');
-    if (recipeFormContainer) {
-        recipeFormContainer.scrollIntoView({ behavior: 'smooth' });
-    }
 }
 
 // Eliminar receta
@@ -386,9 +398,9 @@ function printRecipe(index) {
             <h1>${recipe.name}</h1>
             <h2>Ingredientes</h2>
             <div>
-                ${recipe.ingredients.map(({ ingredient, quantity }, idx) => `
+                ${recipe.ingredients.map(({ ingredient, quantity, image }, idx) => `
                     <div class="ingredient">
-                        <img src="${recipe.images[idx]}" alt="${ingredient}" 
+                        <img src="${image}" alt="${ingredient}" 
                              onerror="this.src='https://via.placeholder.com/50?text=${ingredient}';">
                         <span>${ingredient} (${quantity})</span>
                     </div>
