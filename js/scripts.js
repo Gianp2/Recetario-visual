@@ -4,6 +4,8 @@ const selectedIngredientsDiv = document.getElementById('selected-ingredients');
 const recipeForm = document.getElementById('recipe-form');
 const recipesList = document.getElementById('recipes-list');
 const clearRecipesBtn = document.getElementById('clearRecipes');
+const form = document.getElementById('form-inventario');
+const lista = document.getElementById('lista-inventario');
 
 let inventario = {};
 
