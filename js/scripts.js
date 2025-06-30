@@ -40,9 +40,6 @@ function eliminarProducto(nombre) {
     actualizarLista();
 }
 
-// Traducción de ingredientes al inglés (ingredientTranslations)
-// ... (todo el objeto que ya colocaste)...
-
 let ingredients = Object.keys(ingredientTranslations);
 let selectedIngredients = [];
 let recipes = [];
