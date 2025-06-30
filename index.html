@@ -1,3 +1,5 @@
+https://github.com/Gianp2/Recetario-visual
+quiero agregar un boton abajo del boton de borrar todas las recetas que sea para imprimir todas las recetas
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -441,7 +443,7 @@
             const selectedOptions = Array.from(document.getElementById('ingredient-select').selectedOptions);
             selectedOptions.forEach(option => {
                 const ingredient = option.value;
-                const quantity = prompt(¿Cuántos ${ingredient} necesitas? (Ej: 200g, 2 unidades));
+                const quantity = prompt(`¿Cuántos ${ingredient} necesitas? (Ej: 200g, 2 unidades)`);
                 if (quantity) {
                     selectedIngredients.push({ ingredient, quantity });
                 }
@@ -459,7 +461,7 @@
         function updateSelectedIngredients() {
             const selectedIngredientsDiv = document.getElementById('selected-ingredients');
             selectedIngredientsDiv.innerHTML = selectedIngredients
-                .map(({ ingredient, quantity }) => 
+                .map(({ ingredient, quantity }) => `
                     <div style="display: flex; align-items: center; margin-bottom: 5px;">
                         <img src="${getIngredientImage(ingredient)}" 
                              alt="${ingredient}" 
@@ -473,7 +475,7 @@
                             ❌
                         </button>
                     </div>
-                )
+                `)
                 .join('');
 
             document.querySelectorAll('.remove-ingredient').forEach(button => {
@@ -499,24 +501,24 @@
             const recipeCard = document.createElement('div');
             recipeCard.classList.add('recipe-card');
             recipeCard.setAttribute('data-index', index);
-            recipeCard.innerHTML = 
+            recipeCard.innerHTML = `
                 <h3>${recipe.name}</h3>
                 <p><strong>Ingredientes:</strong></p>
                 <div>
-                    ${recipe.ingredients.map(({ ingredient, quantity }, idx) => 
+                    ${recipe.ingredients.map(({ ingredient, quantity }, idx) => `
                         <div style="display: flex; align-items: center; margin-bottom: 5px;">
                             <img src="${recipe.images[idx]}" alt="${ingredient}" style="width:50px; height:50px; margin-right:10px;"
                                  onerror="this.src='https://via.placeholder.com/50?text=${ingredient}';">
                             <span>${ingredient} (${quantity})</span>
                         </div>
-                    ).join('')}
+                    `).join('')}
                 </div>
                 <p><strong>Pasos:</strong></p>
-                <div>${recipe.steps.split('\n').map(step => <p>${step.trim() || ' '}</p>).join('')}</div>
+                <div>${recipe.steps.split('\n').map(step => `<p>${step.trim() || ' '}</p>`).join('')}</div>
                 <button class="edit-recipe-btn" data-index="${index}">Editar</button>
                 <button class="delete-recipe-btn" data-index="${index}">Eliminar</button>
                 <button class="print-recipe-btn" data-index="${index}">Imprimir</button>
-            ;
+            `;
             document.getElementById('recipes-list').appendChild(recipeCard);
         }
 
@@ -575,7 +577,7 @@
         function printRecipe(index) {
             const recipe = recipes[index];
             const printWindow = window.open('', '_blank');
-            printWindow.document.write(
+            printWindow.document.write(`
                 <html>
                 <head>
                     <title>${recipe.name}</title>
@@ -591,20 +593,20 @@
                     <h1>${recipe.name}</h1>
                     <h2>Ingredientes</h2>
                     <div>
-                        ${recipe.ingredients.map(({ ingredient, quantity }, idx) => 
+                        ${recipe.ingredients.map(({ ingredient, quantity }, idx) => `
                             <div class="ingredient">
                                 <img src="${recipe.images[idx]}" alt="${ingredient}" 
                                      onerror="this.src='https://via.placeholder.com/50?text=${ingredient}';">
                                 <span>${ingredient} (${quantity})</span>
                             </div>
-                        ).join('')}
+                        `).join('')}
                     </div>
                     <h2>Pasos</h2>
                     <p>${recipe.steps.replace(/\n/g, '<br>')}</p>
                     <script>window.print(); window.close();<\/script>
                 </body>
                 </html>
-            );
+            `);
             printWindow.document.close();
         }
 
