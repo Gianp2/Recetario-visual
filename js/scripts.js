@@ -16,7 +16,6 @@ form.addEventListener('submit', function (e) {
 
     if (!nombre || isNaN(cantidad)) return;
 
-    // Agregar o actualizar producto
     inventario[nombre] = (inventario[nombre] || 0) + cantidad;
 
     actualizarLista();
@@ -41,163 +40,22 @@ function eliminarProducto(nombre) {
     actualizarLista();
 }
 
-// Traducción de ingredientes al inglés
-const ingredientTranslations = {
-    "Aceite": "Oil",
-    "Acelga": "Chard",
-    "Aguacate": "Avocado",
-    "Albahaca": "Basil",
-    "Alcachofa": "Artichoke",
-    "Almeja": "Clam",
-    "Almendras": "Almonds",
-    "Anacardos": "Cashews",
-    "Apio": "Celery",
-    "Arroz": "Rice",
-    "Atún": "Tuna",
-    "Azafrán": "Saffron",
-    "Azúcar": "Sugar",
-    "Bacon": "Bacon",
-    "Batata": "Sweet Potato",
-    "Berenjena": "Eggplant",
-    "Bicarbonato": "Baking Soda",
-    "Brócoli": "Broccoli",
-    "Cacahuetes": "Peanuts",
-    "Calabacín": "Zucchini",
-    "Calamares": "Squid",
-    "Camarones": "Shrimp",
-    "Canela": "Cinnamon",
-    "Cardamomo": "Cardamom",
-    "Carne de Cerdo": "Pork",
-    "Carne de Cordero": "Lamb",
-    "Carne de Ternera": "Veal",
-    "Cebada": "Barley",
-    "Cebolla": "Onion",
-    "Cereza": "Cherry",
-    "Cerdo": "Pork",
-    "Champiñones": "Mushrooms",
-    "Chayote": "Chayote",
-    "Chocolate": "Chocolate",
-    "Cilantro": "Cilantro",
-    "Ciruela": "Plum",
-    "Clavo": "Clove",
-    "Coles de Bruselas": "Brussels Sprouts",
-    "Coliflor": "Cauliflower",
-    "Coco": "Coconut",
-    "Codorniz": "Quail",
-    "Comino": "Cumin",
-    "Conejo": "Rabbit",
-    "Cordero": "Lamb",
-    "Corn Flour": "Harina de Maíz",
-    "Crema": "Cream",
-    "Durazno": "Peach",
-    "Espárragos": "Asparagus",
-    "Espinaca": "Spinach",
-    "Fresa": "Strawberry",
-    "Frijoles": "Beans",
-    "Garbanzos": "Chickpeas",
-    "Granada": "Pomegranate",
-    "Guisantes": "Peas",
-    "Harina": "Flour",
-    "Harina de Avena": "Oat Flour",
-    "Harina de Maíz": "Corn Flour",
-    "Harina Integral": "Whole Wheat Flour",
-    "Habas": "Broad Beans",
-    "Hinojo": "Fennel",
-    "Hinojo (semillas)": "Fennel Seeds",
-    "Huevo": "Egg",
-    "Jamón": "Ham",
-    "Jengibre": "Ginger",
-    "Kale": "Kale",
-    "Kiwi": "Kiwi",
-    "Langosta": "Lobster",
-    "Lechuga": "Lettuce",
-    "Leche": "Milk",
-    "Levadura": "Yeast",
-    "Limón": "Lemon",
-    "Lentejas": "Lentils",
-    "Maíz": "Corn",
-    "Mango": "Mango",
-    "Manteca": "Butter",
-    "Manzana": "Apple",
-    "Maracuyá": "Passion Fruit",
-    "Mascarpone": "Mascarpone",
-    "Mejillón": "Mussel",
-    "Melón": "Melon",
-    "Miel": "Honey",
-    "Mijo": "Millet",
-    "Mostaza": "Mustard",
-    "Naranja": "Orange",
-    "Nata": "Heavy Cream",
-    "Nuez Moscada": "Nutmeg",
-    "Nueces": "Walnuts",
-    "Okra": "Okra",
-    "Orégano": "Oregano",
-    "Ostra": "Oyster",
-    "Pan": "Bread",
-    "Papa": "Potato",
-    "Papaya": "Papaya",
-    "Paprika": "Paprika",
-    "Pasta": "Pasta",
-    "Pavo": "Turkey",
-    "Pepino": "Cucumber",
-    "Pera": "Pear",
-    "Perejil": "Parsley",
-    "Pescado": "Fish",
-    "Pimiento": "Pepper",
-    "Pimienta": "Pepper",
-    "Pimienta de Cayena": "Cayenne Pepper",
-    "Piña": "Pineapple",
-    "Pistachos": "Pistachios",
-    "Plátano": "Banana",
-    "Pollo": "Chicken",
-    "Polvo de Hornear": "Baking Powder",
-    "Quinoa": "Quinoa",
-    "Rábano": "Radish",
-    "Requesón": "Cottage Cheese",
-    "Ricotta": "Ricotta",
-    "Romero": "Rosemary",
-    "Rúcula": "Arugula",
-    "Sal": "Salt",
-    "Salmón": "Salmon",
-    "Salchicha": "Sausage",
-    "Sandía": "Watermelon",
-    "Salsa de Soja": "Soy Sauce",
-    "Semillas de Calabaza": "Pumpkin Seeds",
-    "Semillas de Chía": "Chia Seeds",
-    "Semillas de Girasol": "Sunflower Seeds",
-    "Semillas de Sésamo": "Sesame Seeds",
-    "Sorgo": "Sorghum",
-    "Suero de leche": "Buttermilk",
-    "Tapioca": "Tapioca",
-    "Tocino": "Bacon",
-    "Tomate": "Tomato",
-    "Tomillo": "Thyme",
-    "Tortilla": "Tortilla",
-    "Trigo": "Wheat",
-    "Trucha": "Trout",
-    "Uva": "Grape",
-    "Vainilla": "Vanilla",
-    "Vinagre": "Vinegar",
-    "Yogur": "Yogurt",
-    "Zanahoria": "Carrot"
-};
+// Traducción de ingredientes al inglés (ingredientTranslations)
+// ... (todo el objeto que ya colocaste)...
 
 let ingredients = Object.keys(ingredientTranslations);
 let selectedIngredients = [];
 let recipes = [];
 
-// Obtener imagen del ingrediente
 function getIngredientImage(ingredient) {
     let translated = ingredientTranslations[ingredient] || ingredient;
     return `https://www.themealdb.com/images/ingredients/${translated}.png`;
 }
 
-// Cargar lista de ingredientes al iniciar
 function loadIngredients() {
     updateIngredientSelect(ingredients);
 }
 
-// Actualizar el select con los ingredientes filtrados
 function updateIngredientSelect(ingredientsToShow) {
     ingredientSelect.innerHTML = '';
     ingredientsToShow.forEach(ingredient => {
@@ -208,7 +66,6 @@ function updateIngredientSelect(ingredientsToShow) {
     });
 }
 
-// Filtrar ingredientes en tiempo real
 ingredientSearch.addEventListener('input', () => {
     const searchValue = ingredientSearch.value.toLowerCase();
     const filteredIngredients = ingredients.filter(ingredient =>
@@ -217,7 +74,6 @@ ingredientSearch.addEventListener('input', () => {
     updateIngredientSelect(filteredIngredients);
 });
 
-// Función para agregar ingredientes con cantidad usando prompt
 document.getElementById('add-ingredients-btn').addEventListener('click', () => {
     const selectedOptions = Array.from(ingredientSelect.selectedOptions);
     selectedOptions.forEach(option => {
@@ -230,13 +86,11 @@ document.getElementById('add-ingredients-btn').addEventListener('click', () => {
     updateSelectedIngredients();
 });
 
-// Función para eliminar un ingrediente seleccionado
 function removeIngredient(ingredientName) {
     selectedIngredients = selectedIngredients.filter(({ ingredient }) => ingredient !== ingredientName);
     updateSelectedIngredients();
 }
 
-// Función para actualizar la lista de ingredientes seleccionados con botón de eliminación
 function updateSelectedIngredients() {
     selectedIngredientsDiv.innerHTML = selectedIngredients
         .map(({ ingredient, quantity }) => `
@@ -256,7 +110,6 @@ function updateSelectedIngredients() {
         `)
         .join('');
 
-    // Agregar event listener a los botones de eliminación
     document.querySelectorAll('.remove-ingredient').forEach(button => {
         button.addEventListener('click', () => {
             removeIngredient(button.getAttribute('data-ingredient'));
@@ -264,7 +117,6 @@ function updateSelectedIngredients() {
     });
 }
 
-// Cargar recetas guardadas desde localStorage
 function loadRecipesFromStorage() {
     const storedRecipes = localStorage.getItem('recipes');
     if (storedRecipes) {
@@ -274,7 +126,6 @@ function loadRecipesFromStorage() {
     }
 }
 
-// Mostrar recetas guardadas con botón de imprimir
 function displayRecipe(recipe, index) {
     const recipeCard = document.createElement('div');
     recipeCard.classList.add('recipe-card');
@@ -301,9 +152,12 @@ function displayRecipe(recipe, index) {
         <button class="print-recipe-btn" data-index="${index}">Imprimir</button>
     `;
     recipesList.appendChild(recipeCard);
+
+    recipeCard.querySelector('.edit-recipe-btn').addEventListener('click', () => editRecipe(index));
+    recipeCard.querySelector('.delete-recipe-btn').addEventListener('click', () => deleteRecipe(index));
+    recipeCard.querySelector('.print-recipe-btn').addEventListener('click', () => printRecipe(index));
 }
 
-// Guardar y manejar el formulario
 recipeForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -330,7 +184,6 @@ recipeForm.addEventListener('submit', (e) => {
     updateSelectedIngredients();
 });
 
-// Editar receta
 function editRecipe(index) {
     const recipe = recipes[index];
     document.getElementById('recipe-name').value = recipe.name;
@@ -340,109 +193,48 @@ function editRecipe(index) {
     recipeForm.dataset.editingIndex = index;
 }
 
-// Eliminar receta
 function deleteRecipe(index) {
     recipes.splice(index, 1);
     localStorage.setItem('recipes', JSON.stringify(recipes));
     recipesList.innerHTML = '';
-    recipes.forEach((recipe, idx) => displayRecipe(recipe, idx));
+    recipes.forEach((recipe, i) => displayRecipe(recipe, i));
 }
 
-// Función imprimir receta
+// Limpiar todas las recetas
+clearRecipesBtn.addEventListener('click', () => {
+    if (confirm("¿Estás seguro de que deseas eliminar todas las recetas?")) {
+        recipes = [];
+        localStorage.removeItem('recipes');
+        recipesList.innerHTML = '';
+    }
+});
+
+// Imprimir receta individual
 function printRecipe(index) {
     const recipe = recipes[index];
-    const printWindow = window.open('', '_blank');
-    printWindow.document.write(`
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write(`
         <html>
-        <head>
-            <title>${recipe.name}</title>
-            <style>
-                body { font-family: Arial, sans-serif; padding: 20px; }
-                h1 { font-size: 24px; }
-                h2 { font-size: 18px; margin-top: 20px; }
-                .ingredient { display: flex; align-items: center; margin-bottom: 10px; }
-                img { width: 50px; height: 50px; margin-right: 10px; }
-            </style>
-        </head>
-        <body>
-            <h1>${recipe.name}</h1>
-            <h2>Ingredientes</h2>
-            <div>
-                ${recipe.ingredients.map(({ ingredient, quantity }, idx) => `
-                    <div class="ingredient">
-                        <img src="${recipe.images[idx]}" alt="${ingredient}" 
-                             onerror="this.src='https://via.placeholder.com/50?text=${ingredient}';">
-                        <span>${ingredient} (${quantity})</span>
-                    </div>
-                `).join('')}
-            </div>
-            <h2>Pasos</h2>
-            <ul>
-                ${recipe.steps.split('\n').filter(step => step.trim() !== '').map(step => `<li>${step.trim()}</li>`).join('')}
-            </ul>
-            <script>window.print(); window.close();<\/script>
-        </body>
+            <head><title>Imprimir Receta</title></head>
+            <body>
+                <h2>${recipe.name}</h2>
+                <h3>Ingredientes:</h3>
+                <ul>
+                    ${recipe.ingredients.map(({ ingredient, quantity }) => `<li>${ingredient} (${quantity})</li>`).join('')}
+                </ul>
+                <h3>Pasos:</h3>
+                <ol>
+                    ${recipe.steps.split('\n').filter(s => s.trim() !== '').map(step => `<li>${step.trim()}</li>`).join('')}
+                </ol>
+                <script>window.print();</script>
+            </body>
         </html>
     `);
-    printWindow.document.close();
+    newWindow.document.close();
 }
 
-// Editar, eliminar e imprimir recetas
-document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('edit-recipe-btn')) {
-        editRecipe(e.target.getAttribute('data-index'));
-    } else if (e.target.classList.contains('delete-recipe-btn')) {
-        deleteRecipe(e.target.getAttribute('data-index'));
-    } else if (e.target.classList.contains('print-recipe-btn')) {
-        printRecipe(e.target.getAttribute('data-index'));
-    }
-});
-
-// Borrar todas las recetas
-clearRecipesBtn.addEventListener('click', () => {
-    recipesList.innerHTML = '';
-    recipes = [];
-    localStorage.removeItem('recipes');
-});
-
-// Inicialización
-document.addEventListener("DOMContentLoaded", function () {
+// Inicializar
+window.addEventListener('DOMContentLoaded', () => {
     loadIngredients();
     loadRecipesFromStorage();
-});
-
-// Código para EmailJS
-document.addEventListener("DOMContentLoaded", function () {
-    emailjs.init("q5GaGBca1N9M-RrbL");
-
-    const commentForm = document.getElementById("comment-form");
-    if (commentForm) {
-        commentForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const name = document.getElementById("name").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const comment = document.getElementById("comment").value.trim();
-
-            if (!name || !email || !comment) {
-                alert("Por favor, completa todos los campos.");
-                return;
-            }
-
-            const formData = { name, email, comment };
-
-            emailjs.send("service_3a04o94", "template_3lb7au9", formData)
-                .then(function (response) {
-                    console.log("Comentario enviado con éxito:", response);
-                    alert("Comentario enviado con éxito.");
-                    commentForm.reset();
-                })
-                .catch(function (error) {
-                    console.error("Error al enviar el comentario:", error);
-                    alert("Ocurrió un error al enviar el comentario.");
-                });
-        });
-    } else {
-        console.error("El formulario de comentarios no se encuentra en el DOM.");
-    }
 });
