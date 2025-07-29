@@ -29,8 +29,6 @@ Facilitar el aprendizaje de recetas de cocina mediante una plataforma clara, vis
 - Sincronización en la nube para guardar recetas online.
 - Modo oscuro para mayor comodidad visual.
 
-## 🏫 Agradecimientos
-Proyecto desarrollado con amor para la Escuela Especial N°2031, con el compromiso de fomentar una educación inclusiva y significativa.
 
 ## 👨‍💻 Desarrollado por
 [@Gianp2](https://github.com/Gianp2)
